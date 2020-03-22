@@ -5,5 +5,7 @@ app_name = 'Helpline_Portal'
 
 urlpatterns = [
     path('', views.login, name='login'),
+    path('index', views.index, name='index'),
+    path('signup', views.signup, name='signup'),
 
 ]
