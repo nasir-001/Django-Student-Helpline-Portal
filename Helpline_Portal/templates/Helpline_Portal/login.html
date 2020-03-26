@@ -13,16 +13,17 @@
 	    <div id="formContent">
 
 	      <form method="post">
+
 	        <div class="head">
 	          <h4>Login</h4>
 	        </div>
-	        <input type="text" id="login" class="fadeIn second" name="login" placeholder="username" required>
-	        <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" required>
-	        <a name="submit" href="{% url 'Helpline_Portal:index' %}" class="btn btn-secondary" >Login <i class="fas fa-sign-in-alt"></a></i>
-	      </form>
 
+	        {% csrf_token %}
+	      	{{ form.as_p }}
+	       
+    	<input type="submit" />
 	      <div id="formFooter">
-	        <a class="underlineHover" href="{% url 'Helpline_Portal:signup' %}">Don't have an account.?</a>
+	        <a class="underlineHover" href="{% url 'Helpline_Portal:register' %}">Don't have an account.?</a>
 	      </div>
 
 	    </div>
