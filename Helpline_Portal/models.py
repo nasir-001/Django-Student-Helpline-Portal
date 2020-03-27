@@ -13,3 +13,14 @@ class Users(models.Model):
 
 	def __str__(self):
 		return self.username
+
+
+class Staff(models.Model):
+	username = models.CharField(max_length=50)
+	email = models.CharField(max_length=50)
+	password = models.CharField(max_length=50)
+	phone = models.CharField(max_length=11)
+	regnumber = models.CharField(max_length=11)
+
+	def __str__(self):
+		return self.username
