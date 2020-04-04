@@ -1,11 +1,16 @@
+{% extends 'Helpline_Portal/base.html' %}
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Helpline_Portal</title>
 </head>
 <body>
 
-	This is the index
+{% block body %}
+    <div class="topnav">
+  		 <li><a href="{% url 'Helpline_Portal:login' %}"><i class="fa fa-sign-out-alt nav-icon"></i>Logout</a></li>
+	</div> 
+{% endblock %}
 
 </body>
 </html>

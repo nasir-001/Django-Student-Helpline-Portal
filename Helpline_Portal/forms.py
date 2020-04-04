@@ -22,7 +22,7 @@ class RegistrationForm(UserCreationForm):
 		]
 
 	def save(self, commit=True):
-		
+					
 		user = super(RegistrationForm, self).save(commit=False)
 		user.full_name = self.cleaned_data.get('full_name')
 		user.regnumber = self.cleaned_data.get('regnumber')
@@ -30,7 +30,7 @@ class RegistrationForm(UserCreationForm):
 
 		if commit:
 			user.save()
-
+			
 class LoginForm(forms.Form):
 	username = forms.CharField()
 	password = forms.CharField(widget=forms.PasswordInput)
@@ -50,49 +50,6 @@ class LoginForm(forms.Form):
 
 		return super(LoginForm, self).clean(*args, **kwargs)	
 
-
-
-class StaffRegForm(UserCreationForm):
-	regnumber = forms.CharField(max_length=10)
-	phone = forms.CharField(max_length=11)
-
-
-	class Meta:
-		model = User
-		fields = [
-			'username',
-			'password1',
-			'password2',
-			'email',
-			'regnumber',
-			'phone'
-		]
-
-
-
-	def save(self, commit=True):
-		staff = super(StaffRegForm, self).save(commit=False)
-		staff.regnumber = self.cleaned_data.get('regnumber')
-		staff.phone = self.cleaned_data.get('phone')
-
-		if commit:
-			staff.save()
-
-class StaffLoginForm(forms.Form):
-	username = forms.CharField()
-	password = forms.CharField(widget=forms.PasswordInput)
-
-	def clean(self, *args, **kwargs):
-		username = self.cleaned_data.get('username')
-		password = self.cleaned_data.get('password')
-
-		if username and password:
-			staff = authenticate(username=username, password=password)
-			if not staff:
-				raise forms.ValidationError("This user does not exits")
-			if not staff.check_password(password):
-				raise forms.ValidationError("Incorrect password")
-			if not staff.is_active:
-				raise forms.ValidationError("This user is not active")
-
-		return super(StaffLoginForm, self).clean(*args, **kwargs)
+			
+			
+		

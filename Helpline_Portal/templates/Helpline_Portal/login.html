@@ -18,9 +18,10 @@
 	          <h4>Login</h4>
 	        </div>
 
-	        {% csrf_token %}
 	      	{{ form.as_p }}
-	       
+		   {% csrf_token %}
+
+
     	<input type="submit" />
 	      <div id="formFooter">
 	        <a class="underlineHover" href="{% url 'Helpline_Portal:register' %}">Don't have an account.?</a>
