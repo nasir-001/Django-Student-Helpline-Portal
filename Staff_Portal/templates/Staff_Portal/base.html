@@ -1,12 +1,11 @@
 {% load static %}
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link rel="stylesheet" href="{% static 'Staff_Portal/css/style.css' %}" type="text/css">
-	<link rel="stylesheet" href="{% static 'Staff_Portal/css/bootstrap.css' %}">
-	<link rel="stylesheet" href="{% static 'Staff_Portal/css/fontawesome/css/all.css' %}">
+<title>
+	{% block title %}{% endblock %}
+</title>
+	<link rel="stylesheet" href="{% static 'Helpline_Portal/css/style.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'Helpline_Portal/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'Helpline_Portal/css/fontawesome/css/all.css' %}">
 	<!-- <img src='{% static "Staff_Portal_Portal/images/My_Images.jpg" %}'> -->
 </head>
 

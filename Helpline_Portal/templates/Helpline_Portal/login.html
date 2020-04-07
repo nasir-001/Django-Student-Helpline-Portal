@@ -1,11 +1,6 @@
 {% extends 'Helpline_Portal/base.html' %}
 
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>Login Page</title>
-</head>
+{% block title %}Login{% endblock %}
 
 <body>
 	{% block body %}
@@ -15,18 +10,34 @@
 	      <form method="post">
 
 	        <div class="head">
-	          <h4>Login</h4>
+	          <h3>Login</h3>
 	        </div>
 
-	      	{{ form.as_p }}
 		   {% csrf_token %}
 
+		   {% if form.errors %}
+		       <p>Your name and username didn't match.</p>
+		   {% endif %}
 
-    	<input type="submit" />
+		   {{ form.username.label_tag }}
+		   {{ form.username }}
+
+		   {{ form.password.label_tag }}
+		   {{ form.password }}
+
+    		<br><br>
+
+		   <div class="Next-Form" id="Next">
+				<button type="submit" class="btn btn-secondary col">Login <i class="fas fa-sign-in-alt"></a></i></button><br><br>
+              	<!-- <input type="hidden" name="next" value="#{% url 'Helpline_Portal:register' %}#"> -->
+           </div>
+
+
 	      <div id="formFooter">
 	        <a class="underlineHover" href="{% url 'Helpline_Portal:register' %}">Don't have an account.?</a>
 	      </div>
 
+	    </form>
 	    </div>
     </div>
 	{% endblock %}

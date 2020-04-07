@@ -1,13 +1,7 @@
 {% extends 'Staff_Portal/base.html' %}
 
-<!DOCTYPE html>
-<html>
+{% block title %}Staff~Login{% endblock %}
 
-<head>
-	<title>Login Page</title>
-</head>
-
-<body>
 	{% block body %}
 	<div class="wrapper fadeInDown">
 	    <div id="formContent">
@@ -18,13 +12,31 @@
 	          <h3>Staff Login</h3>
 	        </div>
 
-	        {% csrf_token %}
-	      	{{ form.as_p }}
-	       
-    	 	<input type="submit" />
+		     <div class="Login-Form">
+
+		        {% csrf_token %}
+
+		        {% if form.errors %}
+		       		<p>Your name and username didn't match.</p>
+		   		{% endif %}
+		      	
+		      	{{ form.username.label_tag }}
+		      	{{ form.username }}
+
+		      	{{ form.password.label_tag }}
+		      	{{ form.password }}<br><br>
+		      </div>
+
+	      	<div class="Next-Form" id="Next">
+			  <button type="submit" class="btn btn-secondary col">Login <i class="fas fa-sign-in-alt"></a></i></button><br>
+	          <input type="hidden" name="next" value="#{% url 'Staff_Portal:staff_register' %}#">
+			</div>
+		       </form>
 	      <div id="formFooter">
 	        <a class="underlineHover" href="{% url 'Staff_Portal:staff_register' %}">Don't have an account.?</a>
 	      </div>
+
+	   	
 
 	    </div>
     </div>

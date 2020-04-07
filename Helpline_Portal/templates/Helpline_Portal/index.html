@@ -1,16 +1,23 @@
 {% extends 'Helpline_Portal/base.html' %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Helpline_Portal</title>
-</head>
+
+{% block title %}Chat~Index{% endblock %}
+
 <body>
 
-{% block body %}
-    <div class="topnav">
-  		 <li><a href="{% url 'Helpline_Portal:login' %}"><i class="fa fa-sign-out-alt nav-icon"></i>Logout</a></li>
-	</div> 
-{% endblock %}
+	{% block body %}
+		<section class="topnav">
+
+	  		 <li><a href="{% url 'Helpline_Portal:logout' %}"><h5>Logout <i class="fa fa-sign-out-alt nav-icon fa-x"></i></h5></a></li>
+
+	  		 <div class="navPic">
+	  		 	<i class="fa fa-user nav-icon fa-2x"></i>
+	  		 </div>
+
+	  		 <div class="username">
+	  		 	{{ User.username }}
+	  		 </div>
+
+	  	</section>
+	{% endblock %}
 
 </body>
-</html>

@@ -12,24 +12,35 @@ class RegistrationForm(UserCreationForm):
 
 	class Meta:
 		model = User
-		fields = [
-			'username',
-			'password1',
-			'password2',
-			'full_name',
-			'regnumber',
-			'level'
-		]
+		fields = ('username', 'password1', 'password2', 'full_name', 'regnumber', 'level')
 
-	def save(self, commit=True):
-					
-		user = super(RegistrationForm, self).save(commit=False)
-		user.full_name = self.cleaned_data.get('full_name')
-		user.regnumber = self.cleaned_data.get('regnumber')
-		user.level = self.cleaned_data.get('level')
+		
+		def clean_username(self):
+			username = self.cleaned_data['username']
+			try:
+				User.objects.get('username')
+			except ObjectDoesNotExist:
+				return username
+			else:
+				raise forms.ValidationError('Username is already in use.')
 
-		if commit:
-			user.save()
+		def clean_email(self):
+			email = self.cleaned_data['email']
+			try:
+				User.objects.get(email=email)
+			except ObjectDoesNotExist:
+				return email
+			else:
+				raise forms.ValidationError('Email is already in use.')
+
+"""
+	def __init__(self, *args, **kwargs):
+		super(RegistrationForm, self).__init__(*args, **kwargs)
+		self.fields['full_name'].widget = forms.TextInput(attrs={'required': True})
+		self.fields['regnumber_name'].widget = forms.TextInput(attrs={'required': True})
+		self.fields['level'].widget = forms.TextInput(attrs={'required': True})
+"""
+	
 			
 class LoginForm(forms.Form):
 	username = forms.CharField()

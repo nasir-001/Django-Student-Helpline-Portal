@@ -4,21 +4,37 @@ body {
   width: 100%;
 }
 
-/*Navbar styles*/
+
+/* Index TopNavigation bar styles*/
 
 .topnav {
+  padding: 0;
   background-color: lightgrey;
   overflow: hidden;
 }
 
 .topnav li a {
-  padding: 10px;
-  float: left;
+  float: right;
   color: black;
   text-align: center;
-  padding: 14px 16px;
+  padding: 12px 10px 20px 10px;
   text-decoration: none;
   font-size: 17px;
+
+}
+
+main {
+  padding-top: 100px;
+}
+
+.navPic {
+  padding-top: 0;
+  padding-left: 10px;
+  justify-content: center;
+}
+
+section div i {
+  float: left;
 }
 
 .wrapper {
@@ -31,6 +47,11 @@ body {
   padding: 20px;
 }
 
+.Next-Form button {
+  width: 100px;
+}
+
+/*Style for form header*/
 #formContent {
   background-size: cover;
   -webkit-border-radius: 10px 10px 10px 10px;
@@ -53,6 +74,8 @@ body {
   	-webkit-border-radius: 0 0 10px 10px;
   	border-radius: 10px 10px 0 0;
 }
+
+/*Style for form footer*/
 
 #formFooter {
 	background-color: lightgray;

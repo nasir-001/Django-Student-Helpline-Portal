@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.http import HttpResponseRedirect, HttpResponse 
 from Staff_Portal.forms import StaffRegForm, StaffLoginForm
-
+from django.urls import reverse, reverse_lazy
 
 # Create your views here.
 
@@ -11,12 +11,9 @@ def staff_registration(request):
 		form = StaffRegForm()
 	else:
 		form = StaffRegForm(data=request.POST)
-			
 		if form.is_valid():
 			new_staff = form.save()
-
-			login(request)
-			return redirect('Staff_Portal:login')
+			return HttpResponseRedirect(reverse('Staff_Portal:staff_login'))
 
 	context = {
 	'form':form

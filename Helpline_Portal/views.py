@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate, get_user_model
 from django.http import HttpResponseRedirect, HttpResponse 
 from Helpline_Portal.forms import RegistrationForm, LoginForm
+from django.urls import reverse, reverse_lazy
 # Create your views here.
 
 def login(request):
@@ -22,13 +23,20 @@ def register(request):
 		form = RegistrationForm()
 	else:
 		form = RegistrationForm(data=request.POST)
-
 		if form.is_valid():
 			new_user = form.save()
-
-			return redirect('Helpline_Portal:login')
+			return HttpResponseRedirect(reverse('Helpline_Portal:login'))
 
 	context = {
 		'form': form
 	}
 	return render(request, 'Helpline_Portal/register.html', context)
+
+
+def logout(request):
+	return render(request, 'Helpline_Portal/logout.html')
+
+"""
+def index(request):
+	return render(request, 'Helpline_Portal/index.html')
+	"""
