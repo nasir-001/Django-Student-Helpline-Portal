@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 
 from .models import Users
-from .forms import RegistrationForm
+from .models import Staff
 
+admin.site.register(Staff)
 admin.site.register(Users)

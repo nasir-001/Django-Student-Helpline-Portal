@@ -13,10 +13,22 @@
 		<p class="lead">
 			Student helpline portal helps students in which
 			they can ask their questions directly to their 
-			lectures in online based system.
-		</p>
+			lectures in online based system. And the lecturers 
+			can answer the question.
+		</p><br><br>
 
-		<a class="btn btn-lg btn-secondary" href="{% url 'Helpline_Portal:login' %}">Login <i class="fas fa-sign-in-alt"></a></i></a>
+
+		<div class="button1">
+			<a class="btn btn-lg btn-secondary" href="{% url 'Helpline_Portal:login' %}">Login <i class="fas fa-sign-in-alt"></a></i></a>
+			<p>Login Student</p>
+		</div>
+
+		<div class="button2">
+			<a class="btn btn-lg btn-success" href="{% url 'Helpline_Portal:staff_login' %}">Login <i 	class="fas fa-sign-in-alt"></a></i></a>
+			<p>Login Staff</p>
+		</div><br><br>
+
+		
 
 	</div>
 

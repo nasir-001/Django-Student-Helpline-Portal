@@ -33,8 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # My Apps
     'Helpline_Portal',
-    'Staff_Portal',
-
+    'Question_Answer',
+    'material.admin',
+    
     # Django default apps
     'django.contrib.admin',
     'django.contrib.auth',

@@ -51,6 +51,15 @@ section div i {
   width: 100px;
 }
 
+.button2 {
+  float: right;
+}
+
+.button1 {
+  float: left;
+}
+
+
 /*Style for form header*/
 #formContent {
   background-size: cover;
