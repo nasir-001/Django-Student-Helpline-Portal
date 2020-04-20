@@ -8,7 +8,7 @@ from .models import *
 class RegistrationForm(UserCreationForm):
 	full_name = forms.CharField(max_length=50)
 	regnumber = forms.CharField(max_length=10)
-	level = forms.CharField(max_length=1)
+	level     = forms.CharField(max_length=1)
 
 	class Meta:
 		model = User
@@ -56,9 +56,9 @@ class LoginForm(forms.Form):
 
 
 class StaffRegForm(UserCreationForm):
-	email = forms.EmailField(max_length=50, required=True)
+	email     = forms.EmailField(max_length=50, required=True)
 	regnumber = forms.CharField(max_length=10)
-	phone = forms.CharField(max_length=11, required=True)
+	phone     = forms.CharField(max_length=11, required=True)
 
 
 	class Meta:
