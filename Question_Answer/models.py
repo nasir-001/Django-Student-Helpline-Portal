@@ -33,11 +33,11 @@ class Question(models.Model):
     
 
     def __str__(self):
-        return self.question_title
+        return self.question_text
 
     def save(self, *args, **kwargs):
         if not self.pk:
-            self.slug = slugify(self.title)
+            self.slug = slugify(self.question_text)
 
         super().save(*args, **kwargs)
 
@@ -48,13 +48,13 @@ class Question(models.Model):
 
 class Answer(models.Model):
     user          = models.ForeignKey(User, on_delete=models.CASCADE)
-    question_text = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='replies')
     question      = models.ForeignKey(Question, on_delete=models.CASCADE)
+    answer_text = models.TextField(max_length=50000, blank=False, unique=True)
     pub_date      = models.DateTimeField(auto_now_add=True)
     
 
     def __str__(self):
-    	return self.question
+    	return self.answer_text
 
     class Meta:
     	ordering = ['-pub_date']
