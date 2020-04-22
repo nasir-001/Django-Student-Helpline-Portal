@@ -9,20 +9,18 @@
 	<link rel="stylesheet" href="{% static 'Helpline_Portal/css/style.css' %}" type="text/css">
 	<link rel="stylesheet" href="{% static 'Helpline_Portal/css/bootstrap.css' %}">
 	<link rel="stylesheet" href="{% static 'Helpline_Portal/css/fontawesome/css/all.css' %}">
-	<!-- <img src='{% static "Helpline_Portal/images/My_Images.jpg" %}'> -->
+	<link rel="shortcurt icon" type="image/png" href="{% static 'Helpline_Portal/favicons/favicons.png' %}">
+<!-- <img src='{% static "Helpline_Portal/images/My_Image.jpg" %}'>-->
 </head>
+	<body>
 
-<body>
+		{% block body %}
+		{% endblock %}
 
-{% block body %}
-{% endblock %}
+		<main role="main" class="container">
+			{% block logout %}{% endblock %}
+		</main>
 
-<main role="main" class="container">
-		{% block logout %}{% endblock %}
-</main>
-
-
-
-</body>
+	</body>
 
 </html>

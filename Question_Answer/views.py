@@ -4,7 +4,5 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 
 def index(request):
-	context = {}
-	return render(request, 'Question_Answer/index.html', context)
+	return render(request, 'Question_Answer/index.html')
 
-	

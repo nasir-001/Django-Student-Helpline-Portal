@@ -24,8 +24,8 @@ class Category(models.Model):
 
 
 class Question(models.Model):
-    category       = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='questions')
-    owner          = models.ForeignKey(User, on_delete=models.CASCADE, related_name='questions')
+    category       = models.ForeignKey(Category, on_delete=models.CASCADE)
+    owner          = models.ForeignKey(User, on_delete=models.CASCADE)
     question_title = models.CharField(max_length=150, unique=True)
     question_text  = models.TextField(max_length=50000, blank=False, unique=True)
     slug           = models.SlugField(max_length=150, unique=True, editable=False)
@@ -37,7 +37,7 @@ class Question(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.pk:
-            self.slug = slugify(self.question_text)
+            self.slug = slugify(self.question_title)
 
         super().save(*args, **kwargs)
 
@@ -49,7 +49,7 @@ class Question(models.Model):
 class Answer(models.Model):
     user          = models.ForeignKey(User, on_delete=models.CASCADE)
     question      = models.ForeignKey(Question, on_delete=models.CASCADE)
-    answer_text = models.TextField(max_length=50000, blank=False, unique=True)
+    answer_text   = models.TextField(max_length=50000, blank=False, unique=True)
     pub_date      = models.DateTimeField(auto_now_add=True)
     
 

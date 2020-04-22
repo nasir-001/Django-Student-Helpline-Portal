@@ -3,6 +3,20 @@ from .models import Category, Question, Answer
 # Register your models here.
 
 
-admin.site.register(Category)
-admin.site.register(Question)
-admin.site.register(Answer)
+class QuestionAdmin(admin.ModelAdmin):
+	class Meta:
+		model = Question
+
+
+class AnswerAdmin(admin.ModelAdmin):
+	class Meta:
+		model = Answer
+
+
+class CategoryAdmin(admin.ModelAdmin):
+	class Meta:
+		Category
+
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Question, QuestionAdmin)
+admin.site.register(Answer, AnswerAdmin)
