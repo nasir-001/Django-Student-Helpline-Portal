@@ -1,0 +1,47 @@
+{% extends 'Helpline_Portal/base.html' %}
+
+{% block title %}Course Questions | Student Helpline Portal{% endblock %}
+
+{% block body %}
+	
+	<div class="divider mb-4"></div>
+
+	<div class="ask-question">		
+  		<button type="button" class="btn btn-secondary" style="background-color: lightgray;"><h5><a href="{% url 'Question_Answer:new_question' category.id %}">New Question <i class="fa fa-question-circle fa-x"></i></a></h5></button>
+  		<div class="divider mb-4"></div>
+  	</div>
+
+  	<div class="card-columns">
+		<div class="card bg-light col-10">
+			<div class="card-text text-center">
+				<h3>{{ category }}: All Questions</h3>
+			</div>
+		</div>
+	</div>
+
+  	{% for question in questions %}
+	  	<div class="container">
+  			<div class="user-pic">
+  				<i class="fa fa-user nav-icon fa-2x"><h5>{{ question.owner.username.title|linebreaks }}</h5></i>
+  			</div>  			
+	  		<div class="card bg-light">
+				<div class="card-header text-center">
+					{{ question.pub_date }}
+					<h2>{{ question.question_title|linebreaks }}</h2>
+		  		</div>
+				<div class="card-body text-center">	
+					<h5>{{ question.question_text|linebreaks }}</h5>
+				</div>
+			</div>
+			<div class="text-right" id="see-answers">
+				<h5><a href="">see answers</a></h5>
+			</div>
+		</div>
+  		
+		{% empty %}
+			<div class="container">
+				<h1>There is no questions in this course</h1>
+			</div>
+	{% endfor %}
+
+{% endblock %}

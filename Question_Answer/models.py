@@ -13,6 +13,10 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'slug': self.slug})
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.slug = slugify(self.title)
@@ -20,6 +24,8 @@ class Category(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
+        ordering = ['-pub_date']
+        verbose_name = 'Category'
         verbose_name_plural = "Categories"
 
 
@@ -30,10 +36,14 @@ class Question(models.Model):
     question_text  = models.TextField(max_length=50000, blank=False, unique=True)
     slug           = models.SlugField(max_length=150, unique=True, editable=False)
     pub_date       = models.DateTimeField(auto_now_add=True)
-    
+   
 
     def __str__(self):
         return self.question_text
+
+
+    def get_absolute_url(self):
+        return reverse('question', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         if not self.pk:

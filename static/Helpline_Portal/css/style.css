@@ -4,12 +4,11 @@ body {
   width: 100%;
 }
 
-
 /* Index TopNavigation bar styles*/
 
 .topnav {
   padding: 0;
-  background-color: lightgrey;
+  background-color: lightgray;
   overflow: hidden;
 }
 
@@ -37,6 +36,10 @@ section div i {
   float: left;
 }
 
+section li a:hover{
+  color: gray;
+}
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -48,17 +51,69 @@ section div i {
 }
 
 .Next-Form button {
-  width: 100px;
-}
-
-.button2 {
-  float: right;
+  width: 200px;
 }
 
 .button1 {
   float: left;
 }
 
+.view-categories {
+  float: right;
+  padding-right: 10px;
+}
+
+.view-categories a {
+  color: black;
+}
+
+.view-categories a:hover {
+  color: gray;
+}
+
+.card-columns {
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+#see-answers a {
+  color: #111;
+}
+
+#see-answers a:hover {
+  color: gray;
+}
+
+#answer-question a {
+  color: #111;
+}
+
+#answer-question a:hover {
+  color: gray;
+}
+
+.ask-question {
+  float: right;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.ask-question a {
+  color: black;
+}
+
+.ask-question a:hover {
+  color: gray;
+}
+
+#question-form {
+  border: 3px solid #f6f6f6;
+  border-radius: 10px;
+  width: 340px;
+  height: 600px;
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+
+}
 
 /*Style for form header*/
 #formContent {
@@ -214,3 +269,4 @@ input[type=text]:placeholder, input[type=password]:placeholder, input[type=email
 *:focus {
     outline: none;
 }
+

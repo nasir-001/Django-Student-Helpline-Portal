@@ -1,24 +1,67 @@
 {% extends 'Helpline_Portal/base.html' %}
 
-{% block title %}Chat~Index{% endblock %}
+{% block title %}Chat~Index | Student Helpline Portal{% endblock %}
 
 <body>
 
 	{% block body %}
+
 		<section class="topnav">
+	  		<li><a href="{% url 'Helpline_Portal:logout' %}"><h5>Logout <i class="fa fa-sign-out-alt nav-icon fa-x"></i></h5></a></li>
+	  		<div class="navPic">
+	  			<i class="fa fa-user nav-icon fa-2x"> </i>
+	  		</div>
+	  		<div class="username">
+ 		  	{% if request.user.is_authenticated %}
+    			<h5>{{ user }}</h5>
+    		{% endif %}
+			</div>
+		</section>
 
-	  		 <li><a href="{% url 'Helpline_Portal:logout' %}"><h5>Logout <i class="fa fa-sign-out-alt nav-icon fa-x"></i></h5></a></li>
+		<div class="divider mb-4"></div>
+	  	<div class="view-categories">		
+	  		<button type="button" class="btn btn-secondary" style="background-color: lightgray"><h5><a href="{% url 'Question_Answer:categories' %}">View Courses <i class="fa fa-cubes nav-icon fa-x"></i></a></h5></button>
+	  	</div>
 
-	  		 <div class="navPic">
-	  		 	<i class="fa fa-user nav-icon fa-2x"> </i>
-	  		 </div>
+  		{% for question in questions %}
+  			<div class="container">
+  				<div class="user-pic">
+  					<i class="fa fa-user nav-icon fa-2x"><h5>{{ question.owner.username.title|linebreaks }}</h5></i>
+  				</div>  			
+				<div class="card" style="border: 2px solid lightgray">
+					<div class="card-header text-center">
+						{{ question.pub_date }}
+						<h2>{{ question.question_title|linebreaks }}  </h2>
+		  			</div>
 
-	  		 <div class="username">
-	  		 	{{user.username}}
-	  		 </div>
+				  	<div class="card-body text-center" style="height: 150px;" id="text-box">	
+				  		<h5>{{ question.question_text|linebreaks }}</h5>
+				  	</div>
+				</div>
 
-	  	</section>
+				<div class="row text-right">
+					<div class="col col-xl-10" id="answer-question">
+						<h5><a href="">answer question</a></h5>
+					</div>
+					<div class="col" id="see-answers">
+						<h5><a href="">see answers</a></h5>
+					</div>
+				</div>
 
-	{% endblock %}
+			</div>
+
+			{% empty %}
+				<div class="container" style="padding-top: 100px;">
+					<div class="divider mb-4"></div>
+					<div class="jumbotron">
+						<div class="card-text text-center">
+							<h1>There are no questions yet</h1>
+						</div>
+					</div>
+				</div>	  		 	
+  		{% endfor %}
+  	</section>
+
+		{% endblock %}
 
 </body>

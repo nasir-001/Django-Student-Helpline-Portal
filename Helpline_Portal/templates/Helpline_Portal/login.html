@@ -1,6 +1,6 @@
 {% extends 'Helpline_Portal/base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Login | Student Helpline Portal{% endblock %}
 
 <body>
 	{% block body %}
@@ -25,11 +25,12 @@
 		   {{ form.password.label_tag }}
 		   {{ form.password }}
 
-    		<br><br>
+    		<div class="divider mb-4"></div>
 
 		   <div class="Next-Form" id="Next">
-				<button type="submit" class="btn btn-secondary col">Login <i class="fas fa-sign-in-alt"></a></i></button><br><br>
-              	<input type="hidden" name="next" value="#{% url 'Helpline_Portal:register' %}#">
+				<button name="submit" class="btn btn-secondary col" style="width: 100px;">Login <i class="fas fa-sign-in-alt"></a></i></button>
+				<div class="divider mb-4"></div>
+              	<input type="hidden" name="next" value="#{% url 'Question_Answer:index' %}#">
            </div>
 
 

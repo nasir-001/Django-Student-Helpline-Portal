@@ -1,5 +1,5 @@
 {% extends 'Helpline_Portal/base.html' %}
-{% block title %}Registration{% endblock %}
+{% block title %}Registration | Student Helpline Portal{% endblock %}
 <body>
 	{% block body %}
 	<div class="wrapper fadeInDown">
@@ -27,14 +27,15 @@
 		        {{ form.full_name }}
 		        
 		        {{ form.regnumber.label_tag }}
-		        {{ form.regnumber }}<br><br>
+		        {{ form.regnumber }}<br>
 		         
 		        {{ form.level.label_tag }}
-		       	<br>{{ form.level }}<br><br>
-	          
+		       	<br>{{ form.level }}
+	          	<div class="divider mb-4"></div>
 		        
 	        <div class="Next-Form" id="Next">
-				<button type="submit" class="btn btn-secondary col">Register</button><br><br>
+				<button type="submit" class="btn btn-secondary col" style="width: 100px;">Register</button>
+				<div class="divider mb-4"></div>
               <input type="hidden" name="next" value="#{% url 'Helpline_Portal:login' %}#">	
             </div>
 
