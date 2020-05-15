@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout, authenticate, get_user_model
+from django.contrib.auth import login, authenticate
+from django.views.generic import CreateView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages 
-from Helpline_Portal.forms import *
+from .forms import StudentForm, TeacherForm, LoginForm
 from django.urls import reverse
+from django.db import transaction
+from .models import Profile
+from django.template import RequestContext
 # Create your views here.
 
 def logins(request):
@@ -19,40 +23,44 @@ def logins(request):
 	context = {'form': form}
 	return render(request, 'Helpline_Portal/login.html', context)
 
-def register(request):
-	if request.method != 'POST':
-		form = RegistrationForm()
-	else:
-		form = RegistrationForm(data=request.POST)
-		if form.is_valid():
-			form = form.save()
-			messages.success(request, 'Registration successful')
-			return HttpResponseRedirect(reverse('Helpline_Portal:login'))
 
-	context = {
-		'form': form
-	}
+def register(request):
+
+	if request.method == 'POST':
+		form = StudentForm(request.POST)
+
+		if form.is_valid():
+			user = form.save()
+			user.profile = Profile.objects.create(is_student=True, user=user)
+			
+			return HttpResponseRedirect(reverse('Helpline_Portal:login'))
+	else:
+		form = StudentForm()
+	
+	context = {'form': form}
+	return render(request, 'Helpline_Portal/register.html', context)
+
+
+def staff_registration(request):
+
+	if request.method == 'POST':
+		form = TeacherForm(request.POST)
+
+		if form.is_valid():	
+			
+			user = form.save()
+			user.profile = Profile.objects.create(is_teacher=True, user=user)
+			
+			return HttpResponseRedirect(reverse('Helpline_Portal:login'))
+	else:
+		form = TeacherForm()	
+	
+	context = {'form': form}
 	return render(request, 'Helpline_Portal/register.html', context)
 
 
 def logout(request):
 	return render(request, 'Helpline_Portal/logout.html')
-
-
-def staff_registration(request):
-	if request.method != 'POST':
-		form = StaffRegForm()
-	else:
-		form = StaffRegForm(data=request.POST)
-		if form.is_valid():
-			new_staff = form.save()
-			messages.sucess(request, 'Registration successful')
-			return HttpResponseRedirect(reverse('Helpline_Portal:login'))
-
-	context = {
-	'form':form
-	}
-	return render(request, 'Helpline_Portal/staff_register.html', context)
 
 
 def about(request):

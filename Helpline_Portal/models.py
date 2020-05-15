@@ -1,28 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.from .forms import RegistrationForm
 
 
-class Users(models.Model):
-	username  = models.CharField(max_length=50)
-	password1 = models.CharField(max_length=15)
-	password2 = models.CharField(max_length=15)
-	full_name = models.CharField(max_length=50)
-	regnumber = models.CharField(max_length=10, primary_key=True)
-	level     = models.CharField(max_length=1)
-
+class Profile(models.Model):
+	user 	   = models.OneToOneField(User, on_delete=models.CASCADE)
+	is_student = models.BooleanField('student status', default=False)
+	is_teacher = models.BooleanField('teacher status', default=False)
+	#avatar     = models.ImageField(upload_to='profile_image', null=True, blank=False)
 
 	def __str__(self):
-		return self.regnumber
-
-
-class Staff(models.Model):
-	username  = models.CharField(max_length=50)
-	email     = models.EmailField(max_length=50)
-	password  = models.CharField(max_length=50)
-	phone     = models.CharField(max_length=11)
-	regnumber = models.CharField(max_length=11, primary_key=True)
-
-
-	def __str__(self):
-		return self.username
+		return self.user.username

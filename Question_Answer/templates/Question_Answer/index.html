@@ -39,6 +39,7 @@
 				  	</div>
 				</div>
 
+				{% if user.is_authenticated and user.profile.is_teacher %}
 				<div class="row text-right">
 					<div class="col col-xl-10" id="answer-question">
 						<h5><a href="">answer question</a></h5>
@@ -47,6 +48,11 @@
 						<h5><a href="">see answers</a></h5>
 					</div>
 				</div>
+				{% else %}
+				<div class="col text-right" id="see-answers">
+					<h5><a href="">see answers</a></h5>
+				</div>
+				{% endif %}
 
 			</div>
 

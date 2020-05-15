@@ -7,19 +7,25 @@
 <body>
 
 {% block body %}
-
+{% if categories %}
  <div class="divider mb-4"></div>
- <div class="jumbotron" style="background-color: white; padding-left: 100px; padding-right: 100px;">
+  <div class="search-bar" style="padding-top: 0; float: right;">
+		<form method="get">
+			<input type="text" class="form-control" name="q" id="id_q" placeholder="Search Course...">
+		</form>
+	</div>
+ <div class="jumbotron" style="background-color: white; padding-left: 100px; padding-right: 100px; padding-top: 80px;">
   	<div class="row" id="rows" style="height: 400px;">
+  		<div class="divider mb-4"></div>
   		{% for category in categories %}
-  			<div class="col-md-4 text-center" id="cat-box">
+  			<div class="col-md-4" id="cat-box">
   				<div class="card bg-light col-12" id="categories" style="height: 200px">
 	  				<div class="card-header text-center" id="cat-title">
 				<h3><a href="{% url 'Question_Answer:cart_questions' category.id %}">{{ category.title }}</a></h3>
 	  				</div>
 				
-					<div class="card-body" id="cat-text">
-						<p class="card-text">{{ category.description|slice:"100" }}</p>
+					<div class="card-body text-center" id="cat-text">
+						<p class="card-text">{{ category.description|slice:"30" }}</p>
 					</div>
 			</div>
 		<div class="divider mb-4"></div>
@@ -37,6 +43,27 @@
   		{% endfor %}
   	</div>
 </div>
+
+{% else %}
+<div class="container" style="padding-top: 100px;">
+	<div class="row">
+		<div class="card m-auto">
+			<div class="card-body mt-2 mb-2">
+				<h2 class="card-title">
+					No results
+				</h2>
+				<h5 class="card-text">
+					There were no results matching your search: <h5>"{{query}}"</h5>
+				</h5>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+<script type="text/javascript">
+	document.GetElementById("id_q").value = "{{ query }}"
+</script>
+
 {% endblock %}
 
 </body>

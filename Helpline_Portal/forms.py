@@ -1,39 +1,46 @@
 from django import forms
+from django.db import transaction
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from .models import Profile
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, get_user_model
-from .models import *
 
 
-class RegistrationForm(UserCreationForm):
-	full_name = forms.CharField(max_length=50)
-	regnumber = forms.CharField(max_length=10)
-	level     = forms.CharField(max_length=1)
+class StudentForm(UserCreationForm):
 
 	class Meta:
 		model = User
-		fields = ('username', 'password1', 'password2', 'full_name', 'regnumber', 'level')
+		fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
 
+		@transaction.atomic
+		def save(self, commit=True):
+			user = super().save(commit=False)
+			user.email = self.cleaned_data.get('email')
+			user.first_name = self.cleaned_data.get('first_name')
+			user.last_name  = self.cleaned_data.get('last_name')
+
+			if commit:
+				user.save()
+			return user
+
+
+class TeacherForm(UserCreationForm):
+	
+	class Meta:
+		model = User
+		fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
 		
-		def clean_username(self):
-			username = self.cleaned_data['username']
-			try:
-				User.objects.get('username')
-			except ObjectDoesNotExist:
-				return username
-			else:
-				raise forms.ValidationError('Username is already in use.')
-
 		def clean_email(self):
-			email = self.cleaned_data['email']
+			email = self.cleaned_data.get('email')
+
 			try:
 				User.objects.get(email=email)
 			except ObjectDoesNotExist:
 				return email
 			else:
-				raise forms.ValidationError('Email is already in use.')
+				raise forms.ValidationError('This email is not availbale!')
 
-	
+
 class LoginForm(forms.Form):
 	username = forms.CharField()
 	password = forms.CharField(widget=forms.PasswordInput)
@@ -46,34 +53,7 @@ class LoginForm(forms.Form):
 			user = authenticate(username=username, password=password)
 			if not user:
 				raise forms.ValidationError("This user does not exits")
-			if not user.check_password(password):
-				raise forms.ValidationError("Incorrect password")
-			if not user.is_active:
-				raise forms.ValidationError("This user is not active")
 
 		return super(LoginForm, self).clean(*args, **kwargs)	
 
 
-
-class StaffRegForm(UserCreationForm):
-	email     = forms.EmailField(max_length=50, required=True)
-	regnumber = forms.CharField(max_length=10)
-	phone     = forms.CharField(max_length=11, required=True)
-
-
-	class Meta:
-		model = User
-		fields = ('username', 'password1', 'password2', 'email', 'regnumber', 'phone')
-
-
-	def save(self, commit=True):
-		staff = super(StaffRegForm, self).save(commit=False)
-		staff.regnumber = self.cleaned_data.get('regnumber')
-		staff.phone = self.cleaned_data.get('phone')
-
-		if commit:
-			staff.save()
-
-	def check_password(self):
-		if password1 != password2:
-			raise forms.ValidationError("password didn't match.")
