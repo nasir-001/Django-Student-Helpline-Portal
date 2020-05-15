@@ -9,11 +9,13 @@
 {% block body %}
 {% if categories %}
  <div class="divider mb-4"></div>
-  <div class="search-bar" style="padding-top: 0; float: right;">
-		<form method="get">
-			<input type="text" class="form-control" name="q" id="id_q" placeholder="Search Course...">
-		</form>
-	</div>
+  
+	  <div class="input-icons" style="padding-top: 0; float: right;">
+			<form method="get">
+				<i class="fa fa-search icon fa-lg"></i>
+				<input type="text" class="input-field" name="q" id="id_q" placeholder="Search Course...">
+			</form>
+		</div>
  <div class="jumbotron" style="background-color: white; padding-left: 100px; padding-right: 100px; padding-top: 80px;">
   	<div class="row" id="rows" style="height: 400px;">
   		<div class="divider mb-4"></div>

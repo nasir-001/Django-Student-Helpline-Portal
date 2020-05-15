@@ -106,6 +106,35 @@ section li a:hover{
 .ask-question a:hover {
   color: gray;
 }
+.input-icons i { 
+  position: absolute; 
+  padding-top: 25px;
+  padding-left: 20px;
+} 
+  
+.input-icons { 
+  width: 300px; 
+  margin-bottom: 10px; 
+} 
+  
+.icon { 
+  min-width: 40px; 
+} 
+  
+.input-field { 
+    width: 100%; 
+    padding: 10px; 
+} 
+
+.form-control {
+  width: 100%;
+  text-align: center;
+}
+
+.icon {
+  padding: 10px;
+  min-width: 40px;
+}
 
 #question-form {
   border: 3px solid #f6f6f6;
