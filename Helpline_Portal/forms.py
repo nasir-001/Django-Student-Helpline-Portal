@@ -12,16 +12,16 @@ class StudentForm(UserCreationForm):
 		model = User
 		fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
 
-		@transaction.atomic
-		def save(self, commit=True):
-			user = super().save(commit=False)
-			user.email = self.cleaned_data.get('email')
-			user.first_name = self.cleaned_data.get('first_name')
-			user.last_name  = self.cleaned_data.get('last_name')
+		def clean_email(self):
+			email = self.cleaned_data.get('email')
 
-			if commit:
-				user.save()
-			return user
+			try:
+				User.objects.get(email=email)
+			except ObjectDoesNotExist:
+				return email
+			else:
+				raise forms.ValidationError('This email is not availbale!')
+
 
 
 class TeacherForm(UserCreationForm):
@@ -39,6 +39,14 @@ class TeacherForm(UserCreationForm):
 				return email
 			else:
 				raise forms.ValidationError('This email is not availbale!')
+
+
+
+class ProfileForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		fields = ['avatar',]
+        
 
 
 class LoginForm(forms.Form):

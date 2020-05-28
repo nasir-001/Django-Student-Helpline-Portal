@@ -1,4 +1,4 @@
-{% extends 'Helpline_Portal/base.html' %}
+{% extends 'Helpline_Portal/basetopbar.html' %}
 
 {% block title %}Course Questions | Student Helpline Portal{% endblock %}
 
@@ -22,7 +22,7 @@
   	{% for question in questions %}
 	  	<div class="container">
   			<div class="user-pic">
-  				<i class="fa fa-user nav-icon fa-2x"><h5>{{ question.owner.username.title|linebreaks }}</h5></i>
+  				<img src="{{ question.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ question.owner.username.title|linebreaks }}</h5>
   			</div>  			
 	  		<div class="card bg-light">
 				<div class="card-header text-center">
@@ -39,8 +39,16 @@
 		</div>
   		
 		{% empty %}
+			<div class="container" style="padding-top: 100px;">
+				<div class="divider mb-4"></div>
+				<div class="jumbotron">
+					<div class="card-text text-center">
+						<h1>There are no questions in this course</h1>
+					</div>
+				</div>
+			</div>
 			<div class="container">
-				<h1>There is no questions in this course</h1>
+				
 			</div>
 	{% endfor %}
 

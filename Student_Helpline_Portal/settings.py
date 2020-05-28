@@ -132,6 +132,10 @@ STATICFILES_DIRS = [
     STATIC_DIRS,
 ]
 
+MEDIA_URL = '/images/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/Helpline_Portal/images')
+
 from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {

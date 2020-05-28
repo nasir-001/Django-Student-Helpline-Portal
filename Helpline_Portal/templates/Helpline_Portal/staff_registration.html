@@ -9,7 +9,7 @@
 	      <form method="post">
 	        
 	        <div class="head">
-	          <h3>Staff Registration</h3>
+	          <h3>STAFF REGISTRATION</h3>
 	        </div>
 
 	      <div class="Signup-Form">
@@ -31,7 +31,6 @@
 			{{ form.password2.label_tag }}
 			{{ form.password2 }}
 
-			<div class="divider mb-4"></div>
 			{{ form.email.label_tag }}
 			{{ form.email }}
 
@@ -43,15 +42,14 @@
 
 			{{ form.full_name.label_tag }}
 			{{ form.full_name }}
-			
-			<div class="divider mb-4"></div>
+			<br>
 
 	      </div>
 
-	         <div class="Next-Form" id="Next">
+	        <div class="Next-Form" id="Next">
 				<button type="submit" class="btn btn-secondary col" style="width: 100px;">Register</button>
 				<div class="divider mb-4"></div>
-              <input type="hidden" name="next" value="#{% url 'Question_Answer:index' %}#">	
+                <input type="hidden" name="next" value="#{% url 'Question_Answer:index' %}#">	
             </div>
 
 	      </form>

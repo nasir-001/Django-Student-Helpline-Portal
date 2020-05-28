@@ -1,0 +1,71 @@
+{% extends 'Helpline_Portal/basetopbar.html' %}
+{% load static %}
+
+{% block body %}
+
+<style type="text/css">
+	.profile_avatar {
+		max-width: 200px;
+		min-height: 200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+</style>
+
+<br>
+<div class="row" style="padding-left: 50px;">
+	<div class="col-md-3" style="padding-left: 30px;" id="profile-settings">
+		<div card card-body>
+			<h3 style="text-align: center;">Account Settings</h3>
+			<hr>
+			<img class="profile_avatar" src="{{request.user.profile.avatar.url}}">
+			<hr>
+		</div>
+		<div class="divider mb-4"></div>
+		<a class="btn btn-secondary" href="{% url 'Question_Answer:index' %}">Go back <i class="fa fa-home"></i></a></a>
+	</div>
+
+	<div class="col-md-4">
+		<div class="card card-body">
+			<form method="POST" action="" enctype="multipart/form-data">
+				<div class="warning">
+					<h5>Note: You're to only enter your password here if you don't want to change your data!.</h5>
+				</div>
+				{% csrf_token %}
+				<br>	
+				{{ form.username.label_tag }}
+				<br>
+				{{ form.username }}
+				<br>
+				{{ form.password1.label_tag }}
+				<br>
+				{{ form.password1 }}
+				<br>
+				{{ form.password2.label_tag }}
+				<br>
+				{{ form.password2 }}
+				<br>
+				{{ form.first_name.label_tag }}
+				<br>
+				{{ form.first_name }}
+				<br>
+				{{ form.last_name.label_tag }}
+				<br>
+				{{ form.last_name }}
+				{{ form.email.label_tag }}
+				{{ form.email }}
+				<div class="divider mb-4"></div>
+				{{ profile_form.as_p }}
+
+				<div class="divider mb-4"></div>
+					<div class="Next-Form" id="Next">
+					<button name="submit" class="btn btn-secondary col" style="width: 100px;">Update</a></button>
+					<div class="divider mb-4"></div>
+			      	<input type="hidden" name="next" value="#{% url 'Question_Answer:index' %}#">
+				</div>
+				
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

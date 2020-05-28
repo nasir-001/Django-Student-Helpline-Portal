@@ -10,6 +10,7 @@ class Category(models.Model):
     description = models.CharField(max_length=300)
     pub_date    = models.DateTimeField(auto_now_add=True)
 
+
     def __str__(self):
         return self.title
 
@@ -17,11 +18,13 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('category', kwargs={'slug': self.slug})
 
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.slug = slugify(self.title)
 
         super().save(*args, **kwargs)
+
 
     class Meta:
         ordering = ['-pub_date']
@@ -45,11 +48,13 @@ class Question(models.Model):
     def get_absolute_url(self):
         return reverse('question', kwargs={'slug': self.slug})
 
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.slug = slugify(self.question_title)
 
         super().save(*args, **kwargs)
+
 
     class Meta:
         get_latest_by = "-pk"
@@ -57,7 +62,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    user          = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner          = models.ForeignKey(User, on_delete=models.CASCADE)
     question      = models.ForeignKey(Question, on_delete=models.CASCADE)
     answer_text   = models.TextField(max_length=50000, blank=False, unique=True)
     pub_date      = models.DateTimeField(auto_now_add=True)

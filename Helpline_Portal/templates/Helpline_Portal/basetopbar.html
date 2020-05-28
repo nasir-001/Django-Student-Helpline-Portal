@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		{% block title %}{% endblock %}
+	</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="{% static 'Helpline_Portal/js/jquery.min.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'Helpline_Portal/css/style.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'Helpline_Portal/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'Helpline_Portal/css/fontawesome/css/all.css' %}">
+	<link rel="shortcurt icon" type="image/png" href="{% static 'Helpline_Portal/favicons/favicons.png' %}">
+	
+</head>
+
+	<body>
+		
+		{% include 'Helpline_Portal/messages.html' %}
+		<header class="topnav" id="myTopnav">
+
+		    <a style="padding-top: 25px;" href="{% url 'Question_Answer:index' %}">Dashboard <i class="fa fa-home"></i></a>
+
+		    <li class="navPic" style="padding-top: 5px; padding-left: 18px;">
+	  		    <img src="{{ user.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px">
+	  		</li>
+
+	  		{% if request.user.is_authenticated %}
+    			<h5 style="padding-left: 10px;">{{ user }}</h5>
+    		{% endif %}
+		</header>
+		
+		{% block body %}
+			
+		{% endblock %}
+
+		<script>
+			setTimeout(function() {
+				if ($('#msg').length > 0) {
+					$('#msg').remove();
+				}
+			}, 2000)
+		</script>
+
+	</body>
+
+</html>

@@ -1,4 +1,4 @@
-{% extends 'Helpline_Portal/base.html' %}
+{% extends 'Helpline_Portal/basetopbar.html' %}
 
 {% block title %}Ask Question | Student Helpline Portal{% endblock %}
 
@@ -9,26 +9,21 @@
 		<div class="card-herder">
 			<h1>Question Form</h1>
 		</div>
+		<hr>
 		<form action="{% url 'Question_Answer:new_question' category.id %}" method='post' style="padding-top: 40px;">
 
-		  			<h5>Question title:</h5>
-		  			{% csrf_token %}
-		  			{{ form.question_title|linebreaks }}
-					
-					<h5>Question:</h5>
-					{{ form.question_text }}
-					
-					<div class="divider mb-4"></div>
-					<div class="Next-Form">
-						<button name="submit" class="btn btn-lg btn-secondary col" >Post Question <i class="fa fa-arrow-alt-circle-right fa-x"></i></button>
-				      	<input type="hidden" name="next" value="#{% url 'Question_Answer:categories' %}#">
-				   	</div>
-
-				</div>
-			</div>
+  			<h5>Question title:</h5>
+	  			{% csrf_token %}
+	  			{{ form.question_title|linebreaks }}
+			
+			<h5>Question:</h5>
+			{{ form.question_text }}
+			
+			<div class="Next-Form">
+				<button name="submit" class="btn btn-lg btn-secondary col" >Post Question <i class="fa fa-arrow-alt-circle-right fa-x"></i></button>
+		      	<input type="hidden" name="next" value="#{% url 'Question_Answer:categories' %}#">
+		   	</div>
 		</form>
 	</div>
-
-
 
 {% endblock %}

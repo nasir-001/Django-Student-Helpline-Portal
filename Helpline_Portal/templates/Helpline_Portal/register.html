@@ -8,11 +8,17 @@
 		      <form method="post">
 		        
 	        <div class="head">
-	          <h4>Registration</h4>
+	          <h4>STUDENT REGISTRATION</h4>
 	        </div>
 	      <div class="Signup-Form">
 	      		
 				{% csrf_token %}
+
+				{% if form.non_field_errors %}
+				   {% for error in form.non_field_errors %}
+				       {{ error }}
+				   {% endfor %}
+			    {% endif %}
 
 				{{ form.username.label_tag }}
 				{{ form.username }}
@@ -24,7 +30,7 @@
 				{{ form.password2 }}
 				<br>
 				{{ form.email.label_tag }}
-				<div class="divider mb-4"></div>
+				<br>
 				{{ form.email }}
 
 				{{ form.first_name.label_tag }}
@@ -32,7 +38,7 @@
 
 				{{ form.last_name.label_tag }}
 				{{ form.last_name }}
-				
+		
 				<div class="divider mb-4"></div>
 				
 	        <div class="Next-Form" id="Next">

@@ -10,7 +10,7 @@ class Profile(models.Model):
 	user 	   = models.OneToOneField(User, on_delete=models.CASCADE)
 	is_student = models.BooleanField('student status', default=False)
 	is_teacher = models.BooleanField('teacher status', default=False)
-	#avatar     = models.ImageField(upload_to='profile_image', null=True, blank=False)
+	avatar     = models.ImageField(default='default_avatar.jpg', null=True, blank=False)
 
 	def __str__(self):
 		return self.user.username

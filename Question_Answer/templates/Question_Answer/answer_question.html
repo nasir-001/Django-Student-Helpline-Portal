@@ -1,0 +1,30 @@
+{% extends 'Helpline_Portal/basetopbar.html' %}
+
+{% block title %}Ask Question | Student Helpline Portal{% endblock %}
+
+{% block body %}
+	<div class="divider mb-4"></div>
+					
+	<div class="container text-center" id="question-form">
+		<div class="card-herder">
+			<h1>Answer Form</h1>
+		</div>
+		<hr>
+		<form action="{% url 'Question_Answer:answer_question' question.id %}" method='post' style="padding-top: 40px;">
+					
+					<h5>Answer:</h5>
+					
+					{% csrf_token %}
+					{{ form.answer_text }}
+
+					<div class="divider mb-4"></div>
+					<div class="Next-Form">
+						<button name="submit" class="btn btn-lg btn-secondary col" >Post Answer <i class="fa fa-arrow-alt-circle-right fa-x"></i></button>
+				      	<input type="hidden" name="next" value="#{% url 'Question_Answer:index' %}#">
+				   	</div>
+
+				</div>
+			</div>
+		</form>
+	</div>
+{% endblock %}

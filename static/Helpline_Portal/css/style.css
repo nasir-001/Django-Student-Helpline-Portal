@@ -5,40 +5,33 @@ body {
 }
 
 /* Index TopNavigation bar styles*/
-
 .topnav {
-  padding: 0;
-  background-color: lightgray;
   overflow: hidden;
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.1);
+  background-color: lightgray;
 }
 
-.topnav li a {
+.topnav a {
   float: right;
+  display: block;
   color: black;
   text-align: center;
-  padding: 12px 10px 20px 10px;
+  padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
-
 }
 
+.topnav a:hover {
+  background-color: lightgray;
+  color: black;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+/*Stop here*/
 main {
   padding-top: 100px;
-}
-
-.navPic {
-  padding-top: 0;
-  padding-left: 10px;
-  justify-content: center;
-}
-
-section div i {
-  float: left;
-}
-
-section li a:hover{
-  color: gray;
 }
 
 .wrapper {
@@ -143,6 +136,14 @@ section li a:hover{
   height: 600px;
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
 
+}
+
+#profile-settings {
+  border: 3px solid #f6f6f6;
+  border-radius: 10px;
+  width: 340px;
+  height: 600px;
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
 }
 
 /*Style for form header*/

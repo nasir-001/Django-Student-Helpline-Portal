@@ -36,7 +36,8 @@ class AnswerForm(forms.ModelForm):
         label='',
         widget=forms.Textarea(attrs={
             'placeholder': 'Leave your reply...',
-            'rows': 4,
+            'rows': 10,
+            'cols': 30,
         })
     )
 
