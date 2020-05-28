@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'Helpline_Portal',
     'Question_Answer',
     'material.admin',
+    'django_cleanup',
     
     # Django default apps
     'django.contrib.admin',
