@@ -17,6 +17,7 @@ class CategoryAdmin(admin.ModelAdmin):
 	class Meta:
 		Category
 
+admin.site.site_header = 'Admin Student Helpline Portal'
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer, AnswerAdmin)
