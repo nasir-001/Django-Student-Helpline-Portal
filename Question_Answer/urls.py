@@ -4,7 +4,7 @@ from . import views
 app_name = 'Question_Answer'
 
 urlpatterns = [
-	path('', include('django.contrib.auth.urls')),
+	#path('', include('django.contrib.auth.urls')),
 
 	# page for all questions
 	path('index', views.index, name='index'),
@@ -23,4 +23,11 @@ urlpatterns = [
 
 	# page for showing answer of a question
 	path('question/<int:question_id>/', views.question, name='question'),
+
+	# url for liking a question
+	path('like', views.like_question, name='like-question'),
+
+	# url for liking an answer
+	#path('likes', views.like_answer, name='like-answer'),
+
 ]

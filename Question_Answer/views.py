@@ -3,10 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.contrib import messages
 #from .forms import CategoryForm
+from django.views.generic import RedirectView
 from django.db.models import Q
 from Helpline_Portal.models import Profile
 from .forms import QuestionForm, AnswerForm
-from .models import Category, Question, Answer
+from .models import Category, Question, Answer, Like
 from operator import attrgetter
 
 
@@ -103,3 +104,49 @@ def get_categories_queryset(query=None):
         for cart_list in cart_lists:
             queryset.append(cart_list)
     return list(set(queryset))
+
+
+def like_question(request):
+    user = request.user
+    if request.method == 'POST':
+        question_id = request.POST.get('question_id')
+        question_obj = Question.objects.get(id=question_id)
+
+        if user in question_obj.liked.all():
+            question_obj.liked.remove(user)
+        else:
+            question_obj.liked.add(user)
+
+        like, created = Like.objects.get_or_create(user=user, question_id=question_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+
+        like.save()
+    return redirect('Question_Answer:index')
+
+
+# def like_answer(request):
+#     user = request.user
+#     if request.method == 'POST':
+#         answer_id = request.POST.get('answer_id')
+#         answer_obj = Answer.objects.get(id=answer_id)
+
+#         if user in answer_obj.liked.all():
+#             answer_obj.liked.remove(user)
+#         else:
+#             answer_obj.liked.add(user)
+
+#         like, created = Like.objects.get_or_create(user=user)
+
+#         if not created:
+#             if like.value == 'Like':
+#                 like.value = 'Unlike'
+#             else:
+#                 like.value = 'Like'
+
+#         like.save()
+#     return redirect('Question_Answer:index')

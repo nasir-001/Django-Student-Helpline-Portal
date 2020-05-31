@@ -11,6 +11,8 @@
   		<div class="divider mb-4"></div>
   	</div>
 
+{% if questions %}
+
   	<div class="card-columns">
 		<div class="card bg-light col-10">
 			<div class="card-text text-center">
@@ -37,19 +39,31 @@
 				<h5><a href="">see answers</a></h5>
 			</div>
 		</div>
-  		
-		{% empty %}
-			<div class="container" style="padding-top: 100px;">
-				<div class="divider mb-4"></div>
-				<div class="jumbotron">
-					<div class="card-text text-center">
-						<h1>There are no questions in this course</h1>
-					</div>
-				</div>
-			</div>
-			<div class="container">
-				
-			</div>
+
 	{% endfor %}
+  		
+{% else %}
+	
+	<div class="card-columns">
+		<div class="card bg-light col-6">
+			<div class="card-text text-center">
+				<h3>{{ category }}: </h3>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" style="padding-top: 100px;">
+		<div class="divider mb-4"></div>
+		<div class="jumbotron">
+			<div class="card-text text-center">
+				<h1>There are no questions in this course</h1>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		
+	</div>	
+
+{% endif %}
 
 {% endblock %}
