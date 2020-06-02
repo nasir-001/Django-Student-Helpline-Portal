@@ -6,6 +6,7 @@ from .models import Profile
 from django.contrib.auth.forms import UserCreationForm
 
 
+
 class StudentForm(UserCreationForm):
 
 	class Meta:
