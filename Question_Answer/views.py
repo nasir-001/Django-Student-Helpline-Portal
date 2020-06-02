@@ -7,7 +7,11 @@ from django.views.generic import RedirectView
 from django.db.models import Q
 from Helpline_Portal.models import Profile
 from .forms import QuestionForm, AnswerForm
+<<<<<<< HEAD
 from .models import Category, Question, Answer, QuestionLike, AnswerLike
+=======
+from .models import Category, Question, Answer, Like
+>>>>>>> d999ee1f1e4a9bfd794debd8d578bb3b75a6b3ae
 from operator import attrgetter
 
 
@@ -117,7 +121,11 @@ def like_question(request):
         else:
             question_obj.liked.add(user)
 
+<<<<<<< HEAD
         like, created = QuestionLike.objects.get_or_create(user=user, question_id=question_id)
+=======
+        like, created = Like.objects.get_or_create(user=user, question_id=question_id)
+>>>>>>> d999ee1f1e4a9bfd794debd8d578bb3b75a6b3ae
 
         if not created:
             if like.value == 'Like':
@@ -129,6 +137,7 @@ def like_question(request):
     return redirect('Question_Answer:index')
 
 
+<<<<<<< HEAD
 def like_answer(request):
     user = request.user
     if request.method == 'POST':
@@ -150,3 +159,26 @@ def like_answer(request):
 
         like.save()
     return redirect('Question_Answer:index')
+=======
+# def like_answer(request):
+#     user = request.user
+#     if request.method == 'POST':
+#         answer_id = request.POST.get('answer_id')
+#         answer_obj = Answer.objects.get(id=answer_id)
+
+#         if user in answer_obj.liked.all():
+#             answer_obj.liked.remove(user)
+#         else:
+#             answer_obj.liked.add(user)
+
+#         like, created = Like.objects.get_or_create(user=user)
+
+#         if not created:
+#             if like.value == 'Like':
+#                 like.value = 'Unlike'
+#             else:
+#                 like.value = 'Like'
+
+#         like.save()
+#     return redirect('Question_Answer:index')
+>>>>>>> d999ee1f1e4a9bfd794debd8d578bb3b75a6b3ae

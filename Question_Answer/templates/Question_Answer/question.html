@@ -12,6 +12,7 @@
 
     {% for answer in answers %}
     <div class="divider mb-4"></div>
+<<<<<<< HEAD
 
       <div class="container">
           <h5 style="float: right; padding-top: 40px;">{{ answer.pub_date }}</h5>
@@ -23,24 +24,50 @@
                   <h2>{{ question.question_text|linebreaks }}</h2>
               </div>
 
+=======
+
+      <div class="container">
+          <h5 style="float: right; padding-top: 40px;">{{ answer.pub_date }}</h5>
+          <div class="user-pic">
+              <img src="{{ answer.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ answer.owner.username.title|linebreaks }}</h5></i>
+          </div>        
+          <div class="card" style="border: 2px solid lightgray">
+              <div class="card-header text-center">
+                  <h2>{{ question.question_text|linebreaks }}</h2>
+              </div>
+
+>>>>>>> d999ee1f1e4a9bfd794debd8d578bb3b75a6b3ae
               <div class="card-body text-center" style="height: 150px;" id="text-box">  
                   <h5>{{ answer.answer_text|linebreaks }}</h5>
               </div>
           </div>
 
+<<<<<<< HEAD
           <div class="divider mb-2"></div>
+=======
+          <!-- <div class="divider mb-2"></div>
+>>>>>>> d999ee1f1e4a9bfd794debd8d578bb3b75a6b3ae
           <div class="row">
             <div class="col">
                 <div class="segment">
                     <form action="{% url 'Question_Answer:like-answer' %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="answer_id" value="{{ answer.id }}">
+<<<<<<< HEAD
 
                         {% if request.user not in answer.liked.all %}
                             <button style="color: black; background-color: white; border: none;" type="submit" class="btn btn-primary"><i class="fa fa-thumbs-up fa-x"></i></button>
 
                         {% else %}
                             <button style="color: black; background-color: white; border: none;" type="submit" class="btn btn-danger"><i class="fa fa-thumbs-down fa-x"></i></button>
+=======
+
+                        {% if request.user not in answer.liked.all %}
+                            <button type="submit" class="btn btn-primary">Like</button>
+
+                        {% else %}
+                            <button type="submit" class="btn btn-danger">Unlike</button>
+>>>>>>> d999ee1f1e4a9bfd794debd8d578bb3b75a6b3ae
 
                         {% endif %}
 
@@ -49,7 +76,11 @@
                 </div>
             </div>
         </div>  
+<<<<<<< HEAD
       </div>
+=======
+      </div> -->
+>>>>>>> d999ee1f1e4a9bfd794debd8d578bb3b75a6b3ae
       <div class="divider mb-4"></div>
 
     {% endfor %}
