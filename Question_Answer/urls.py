@@ -28,10 +28,6 @@ urlpatterns = [
 	path('like', views.like_question, name='like-question'),
 
 	# url for liking an answer
-<<<<<<< HEAD
 	path('likes', views.like_answer, name='like-answer'),
-=======
-	#path('likes', views.like_answer, name='like-answer'),
->>>>>>> d999ee1f1e4a9bfd794debd8d578bb3b75a6b3ae
 
 ]

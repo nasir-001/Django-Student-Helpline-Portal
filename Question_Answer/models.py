@@ -73,7 +73,7 @@ class Answer(models.Model):
 
 
     def __str__(self):
-    	return self.answer_text
+        return self.answer_text
 
 
     @property
@@ -82,21 +82,16 @@ class Answer(models.Model):
 
 
     class Meta:
-    	ordering = ['-pub_date']
+        ordering = ['-pub_date']
 
 
-<<<<<<< HEAD
 QUESTION_LIKE_CHOICES = (
-=======
-LIKE_CHOICES = (
->>>>>>> d999ee1f1e4a9bfd794debd8d578bb3b75a6b3ae
     ('Like', 'Like'),
     ('Unlike', 'Unlike'),
 )
 
 
 
-<<<<<<< HEAD
 class QuestionLike(models.Model):
     user      = models.ForeignKey(User, on_delete=models.CASCADE)
     question  = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -122,14 +117,3 @@ class AnswerLike(models.Model):
 
     def __str__(self):
         return str(self.value)
-=======
-class Like(models.Model):
-    user      = models.ForeignKey(User, on_delete=models.CASCADE)
-    question  = models.ForeignKey(Question, on_delete=models.CASCADE)
-    #answer    = models.ForeignKey(Answer, on_delete=models.CASCADE)
-    value     = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
-
-
-    def __str__(self):
-        return str(self.question)
->>>>>>> d999ee1f1e4a9bfd794debd8d578bb3b75a6b3ae
