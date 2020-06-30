@@ -11,7 +11,7 @@ class StudentForm(UserCreationForm):
 
 	class Meta:
 		model = User
-		fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
+		fields = ('username', 'email', 'first_name', 'password1', 'password2')
 
 		def clean_email(self):
 			email = self.cleaned_data.get('email')
@@ -22,6 +22,16 @@ class StudentForm(UserCreationForm):
 				return email
 			else:
 				raise forms.ValidationError('This email is not availbale!')
+
+		def clean_last_name(self):
+			email = self.cleaned_data.get('last_name')
+
+			try:
+				User.objects.get(last_name=last_name)
+			except ObjectDoesNotExist:
+				return last_name
+			else:
+				raise forms.ValidationError('User with this regnumber already exists!')
 
 
 
