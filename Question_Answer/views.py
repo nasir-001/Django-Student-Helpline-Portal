@@ -1,13 +1,15 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.http import HttpResponseRedirect, HttpResponse, Http404, JsonResponse
 from django.contrib import messages
 #from .forms import CategoryForm
+from django.views.generic import RedirectView
 from django.db.models import Q
 from Helpline_Portal.models import Profile
 from .forms import QuestionForm, AnswerForm
-from .models import Category, Question, Answer
+from .models import Category, Question, Answer, QuestionLike, AnswerLike
 from operator import attrgetter
+from django.template.loader import render_to_string
 
 
 @login_required
@@ -103,3 +105,85 @@ def get_categories_queryset(query=None):
         for cart_list in cart_lists:
             queryset.append(cart_list)
     return list(set(queryset))
+
+
+# def like_question(request):
+#     user = request.user
+#     if request.method == 'POST':
+   
+#         question_id = request.POST.get('question_id')
+#         #question_obj = Question.objects.get(id=question_id)
+#         question_obj = get_object_or_404(Question, id=request.POST.get('id'))
+
+
+#         if user in question_obj.liked.all():
+#             question_obj.liked.remove(user)
+#         else:
+#             question_obj.liked.add(user)
+
+#         like, created = QuestionLike.objects.get_or_create(user=user, question_id=question_id)
+
+#         if not created:
+#             if like.value == 'Like':
+#                 like.value = 'Unlike'
+#             else:
+#                 like.value = 'Like'
+
+#         like.save()
+#         context = {
+#             'question_id': question_id,
+#             'question_obj': question_obj,
+#         }
+#         if request.is_ajax():
+#             html = render_to_string('Question_Answer/question_liked.html', request=request)
+#             return JsonResponse({'form': html})
+
+#         else:
+#             return redirect("Question_Answer:index")
+
+
+
+def like_question(request):
+    user = request.user
+    if request.method == 'POST':
+        question_id = request.POST.get('question_id')
+        question_obj = Question.objects.get(id=question_id)
+
+        if user in question_obj.liked.all():
+            question_obj.liked.remove(user)
+        else:
+            question_obj.liked.add(user)
+
+        like, created = QuestionLike.objects.get_or_create(user=user, question_id=question_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+
+        like.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def like_answer(request):
+    user = request.user
+    if request.method == 'POST':
+        answer_id = request.POST.get('answer_id')
+        answer_obj = Answer.objects.get(id=answer_id)
+
+        if user in answer_obj.liked.all():
+            answer_obj.liked.remove(user)
+        else:
+            answer_obj.liked.add(user)
+
+        like, created = AnswerLike.objects.get_or_create(user=user, answer_id=answer_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+
+        like.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

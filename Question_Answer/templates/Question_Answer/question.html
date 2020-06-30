@@ -4,38 +4,64 @@
 
 <div class="divider mb-4"></div>
 
-{% for answer in answers %}
-<div class="divider mb-4"></div>
+{% if answers %}
 
-  <div class="container">
-      <h5 style="float: right; padding-top: 40px;">{{ answer.pub_date }}</h5>
-      <div class="user-pic">
-          <img src="{{ answer.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ answer.owner.username.title|linebreaks }}</h5></i>
-      </div>        
-      <div class="card" style="border: 2px solid lightgray">
-          <div class="card-header text-center">
-              <h2>{{ question.question_text|linebreaks }}</h2>
-              <!-- {{ answer.question.category.title }} -->
+    <div class="container fluit text-center">
+        <h1 class="card-header">All Answers for this question</h1>
+    </div>
+
+    {% for answer in answers %}
+    <div class="divider mb-4"></div>
+
+      <div class="container">
+          <h5 style="float: right; padding-top: 40px;">{{ answer.pub_date|timesince }} ago</h5>
+          <div class="user-pic">
+              <img src="{{ answer.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ answer.owner.username.title|linebreaks }}</h5></i>
+          </div>        
+          <div class="card" style="border: 2px solid lightgray">
+              <div class="card-header text-center">
+                  <h2>{{ question.question_text|linebreaks }}</h2>
+              </div>
+
+              <div class="card-body text-center" style="height: 150px;" id="text-box">  
+                  <h5>{{ answer.answer_text|linebreaks }}</h5>
+              </div>
           </div>
 
-          <div class="card-body text-center" style="height: 150px;" id="text-box">  
-              <h5>{{ answer.answer_text|linebreaks }}</h5>
-          </div>
+          <div class="divider mb-2"></div>
+          <div class="row">
+            <div class="col">
+                <div class="segment">
+                    <form action="{% url 'Question_Answer:like_answer' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="answer_id" value="{{ answer.id }}">
+
+                        {% if request.user not in answer.liked.all %}
+                            <button style="color: black; background-color: white; border: none;" type="submit" class="btn btn-primary"><i class="fa fa-thumbs-up fa-x"></i></button>
+
+                        {% else %}
+                            <button style="color: black; background-color: white; border: none;" type="submit" class="btn btn-danger"><i class="fa fa-thumbs-down fa-x"></i></button>
+
+                        {% endif %}
+
+                    </form>
+                    <strong>{{ answer.liked.all.count }} likes</strong>
+                </div>
+            </div>
+        </div>  
       </div>
-  </div>
-  <div class="divider mb-4"></div>
-
-  
-
-  {% empty %}
-   <div class="container" style="padding-top: 100px;">
       <div class="divider mb-4"></div>
-      <div class="jumbotron">
-        <div class="card-text text-center">
-          <h1>There is no answer for this question</h1>
-        </div>
-      </div>
-  </div>
-{% endfor %}
 
+    {% endfor %}
+
+{% else %}
+     <div class="container" style="padding-top: 100px;">
+          <div class="divider mb-4"></div>
+          <div class="jumbotron">
+            <div class="card-text text-center">
+              <h1>There is no answer for this question</h1>
+            </div>
+          </div>
+      </div>
+{% endif %}
 {% endblock %}

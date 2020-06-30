@@ -1,5 +1,6 @@
 {% extends 'Helpline_Portal/base.html' %}
 
+
 {% block title %}Chat~Index | Student Helpline Portal{% endblock %}
 
 <body>
@@ -10,7 +11,7 @@
 		    <a style="padding-top: 25px;" href="{% url 'Helpline_Portal:logout' %}">Logout <i class="fa fa-sign-out-alt nav-icon fa-x"></i></a>
 		    <a style="padding-top: 25px;" href="{% url 'Helpline_Portal:accountSettings' %}">Settings <i class="fa fa-user-cog setting-icon"></i></a>
 		    
-		    <li class="navPic" style="padding-top: 5px; padding-left: 18px;">
+		    <li class="navPic" style="padding-top: 5px; list-style: none; padding-left: 18px;">
 	  		    <img src="{{ user.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px">
 	  		</li>
 
@@ -28,7 +29,9 @@
   		{% for question in questions %}
   			<div class="divider mb-4"></div>
   			<div class="container">
-  				<h5 style="float: right; padding-top: 40px;">{{ question.pub_date }}</h5>
+  				<h5 style="float: right; padding-top: 40px;">
+  					{{ question.pub_date|timesince }} ago
+  				</h5>
   				<div class="user-pic">
   					<img src="{{ question.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ question.owner.username.title|linebreaks }}</h5></i>
   				</div> 	
@@ -45,20 +48,27 @@
 				  	</div>
 				</div>
 
-				{% if user.is_authenticated and user.profile.is_teacher %}
-					<div class="row text-right">
-						<div class="col col-xl-10" id="answer-question">
-							<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">answer question</a></h5>
+				<div class="row">
+
+					<div id="liked-section">
+						{% include 'Question_Answer/question_liked.html' %}
+					</div>
+
+					{% if user.is_authenticated and user.profile.is_teacher %}
+						<div class="row">
+							<div class="col-4" id="answer-question">
+								<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">answer</a><h5>
+							</div>
+							<div class="col-8" id="see-answers">
+								<h5><a href="{% url 'Question_Answer:question' question.id %}">see answers</a><h5>
+							</div>
 						</div>
-						<div class="col" id="see-answers">
+					{% else %}
+						<div class="col text-right" id="see-answers">
 							<h5><a href="{% url 'Question_Answer:question' question.id %}">see answers</a></h5>
 						</div>
-					</div>
-				{% else %}
-					<div class="col text-right" id="see-answers">
-						<h5><a href="{% url 'Question_Answer:question' question.id %}">see answers</a></h5>
-					</div>
-				{% endif %}
+					{% endif %}
+				</div>
 
 			</div>
 
@@ -74,6 +84,20 @@
   		{% endfor %}
 
   	</section>
+<!-- 
+
+	<script>
+		$(document).ready(function(){
+			$('#like').click(function(e){
+				// e.preventDefault();
+				console.log("click")
+				$.get('question_liked.html', function(data){
+					$('#liked-section').html(data);
+				});
+			});
+		});
+		
+	</script> -->
 
 		{% endblock %}
 

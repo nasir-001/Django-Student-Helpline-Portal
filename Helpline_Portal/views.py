@@ -109,7 +109,8 @@ def staff_registration(request):
 	return render(request, 'Helpline_Portal/staff_registration.html', context)
 
 
-def logout(request):
+def logouts(request):
+	logout(request)
 	return render(request, 'Helpline_Portal/logout.html')
 
 
