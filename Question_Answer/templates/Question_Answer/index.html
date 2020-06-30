@@ -49,6 +49,7 @@
 				</div>
 
 				<div class="row">
+<<<<<<< HEAD
 
 					<div id="liked-section">
 						{% include 'Question_Answer/question_liked.html' %}
@@ -63,6 +64,36 @@
 								<h5><a href="{% url 'Question_Answer:question' question.id %}">see answers</a><h5>
 							</div>
 						</div>
+=======
+					<div class="col">
+						<div class="segment">
+							<form action="{% url 'Question_Answer:like-question' %}" method="POST">
+								{% csrf_token %}
+								<input type="hidden" name="question_id" value="{{ question.id }}">
+
+								{% if request.user not in question.liked.all %}
+									<button style="color: black; background-color: white; border: none;" type="submit" class="btn btn-primary"><i class="fa fa-thumbs-up fa-x"></i></button>
+									
+								{% else %}
+									<button style="color: black; background-color: white; border: none;" type="submit" class="btn btn-danger"><i class="fa fa-thumbs-down fa-x"></i></button>
+
+								{% endif %}
+								
+							</form>
+							<strong>{{ question.liked.all.count }} likes</strong>
+						</div>
+					</div>
+
+					{% if user.is_authenticated and user.profile.is_teacher %}
+						<div class="row">
+							<div class="col-4" id="answer-question">
+								<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">answer</a><h5>
+							</div>
+							<div class="col-8" id="see-answers">
+								<h5><a href="{% url 'Question_Answer:question' question.id %}">see answers</a><h5>
+							</div>
+						</div>
+>>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
 					{% else %}
 						<div class="col text-right" id="see-answers">
 							<h5><a href="{% url 'Question_Answer:question' question.id %}">see answers</a></h5>

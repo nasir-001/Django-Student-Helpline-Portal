@@ -73,7 +73,13 @@ class Answer(models.Model):
 
 
     def __str__(self):
-    	return self.answer_text
+        return self.answer_text
+
+
+    @property
+    def num_likes(self):
+        return self.liked.all().count()
+
 
 
     @property
@@ -82,7 +88,11 @@ class Answer(models.Model):
 
 
     class Meta:
+<<<<<<< HEAD
     	ordering = ['-pub_date']
+=======
+        ordering = ['-pub_date']
+>>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
 
 
 QUESTION_LIKE_CHOICES = (

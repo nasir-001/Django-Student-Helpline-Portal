@@ -14,7 +14,11 @@
     <div class="divider mb-4"></div>
 
       <div class="container">
+<<<<<<< HEAD
           <h5 style="float: right; padding-top: 40px;">{{ answer.pub_date|timesince }} ago</h5>
+=======
+          <h5 style="float: right; padding-top: 40px;">{{ answer.pub_date }}</h5>
+>>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
           <div class="user-pic">
               <img src="{{ answer.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ answer.owner.username.title|linebreaks }}</h5></i>
           </div>        
@@ -32,7 +36,11 @@
           <div class="row">
             <div class="col">
                 <div class="segment">
+<<<<<<< HEAD
                     <form action="{% url 'Question_Answer:like_answer' %}" method="POST">
+=======
+                    <form action="{% url 'Question_Answer:like-answer' %}" method="POST">
+>>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
                         {% csrf_token %}
                         <input type="hidden" name="answer_id" value="{{ answer.id }}">
 

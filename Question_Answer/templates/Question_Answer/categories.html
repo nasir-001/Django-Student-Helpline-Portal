@@ -5,9 +5,54 @@
 <body>
 
 {% block body %}
+<<<<<<< HEAD
+=======
+
+<!-- {% if categories %} -->
+<div class="divider mb-4"></div>
+  
+	<div class="input-icons" style="padding-top: 0; float: right;">
+		<form method="get">
+			<i class="fa fa-search icon fa-lg"></i>
+			<input type="text" class="input-field" name="q" id="id_q" placeholder="Search Course...">
+		</form>
+	</div>
+
+ <div class="jumbotron" style="background-color: white; padding-left: 100px; padding-right: 100px; padding-top: 80px;">
+  	<div class="row" id="rows" style="height: 400px;">
+  		{% for category in categories %}
+  			<div class="col-md-4" id="cat-box">
+  				<div class="card">
+	  				<div class="card bg-light col-12" id="categories" style="height: 200px">
+		  				<div class="card-header text-center" id="cat-title">
+							<h3><a style="color: gray;" href="{% url 'Question_Answer:cart_questions' category.id %}">{{ category.title }}</a></h3>
+		  				</div>
+					
+						<div class="card-body text-center" id="cat-text">
+							<p class="card-text">{{ category.description }}</p>
+						</div>
+					</div>
+				
+  			</div>
+  			<div class="divider mb-4"></div>
+  		</div>
+  		{% empty %}
+			<div class="container" style="padding-top: 100px;">
+				<div class="divider mb-4"></div>
+				<div class="jumbotron">
+					<div class="card-text text-center">
+						<h1>There are no categories yet</h1>
+					</div>
+				</div>
+			</div>
+  		{% endfor %}
+  	</div>
+</div>
+>>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
 
 {% if categories %}
 	<div class="divider mb-4"></div>
+<<<<<<< HEAD
 	  
 		<div class="input-icons" style="padding-top: 0; float: right;">
 			<form method="get">
@@ -16,6 +61,19 @@
 			</form>
 		</div>
 {% endif %}
+=======
+	<div class="jumbotron">
+		<h2 class="card-title text-center">
+				No results
+			</h2>
+		<div class="card-text text-center">
+			<h2>There were no results matching your search:</h2> <h1>"{{ query }}"</h1>
+		</div>
+	</div>
+</div>
+
+<!-- {% endif %} -->
+>>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
 
 	 <div class="jumbotron" style="background-color: white; padding-left: 100px; padding-right: 100px; padding-top: 80px;">
 	  	<div class="row" id="rows" style="height: 400px;">
