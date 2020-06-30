@@ -88,12 +88,9 @@ class Answer(models.Model):
 
 
     class Meta:
-<<<<<<< HEAD
     	ordering = ['-pub_date']
-=======
-        ordering = ['-pub_date']
->>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
 
+        
 
 QUESTION_LIKE_CHOICES = (
     ('Like', 'Like'),

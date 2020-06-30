@@ -107,7 +107,7 @@ def get_categories_queryset(query=None):
     return list(set(queryset))
 
 
-<<<<<<< HEAD
+
 # def like_question(request):
 #     user = request.user
 #     if request.method == 'POST':
@@ -144,8 +144,7 @@ def get_categories_queryset(query=None):
 
 
 
-=======
->>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
+
 def like_question(request):
     user = request.user
     if request.method == 'POST':
@@ -166,11 +165,7 @@ def like_question(request):
                 like.value = 'Like'
 
         like.save()
-<<<<<<< HEAD
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-=======
-    return redirect('Question_Answer:index')
->>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
 
 
 def like_answer(request):
@@ -193,8 +188,4 @@ def like_answer(request):
                 like.value = 'Like'
 
         like.save()
-<<<<<<< HEAD
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-=======
-    return redirect('Question_Answer:index')
->>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
