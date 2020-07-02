@@ -26,8 +26,9 @@ SECRET_KEY = 'd#j&-6#)w)7zwm(%mh%pp8^_pcdv0d1%9ox$f^3m($3&bs*6a3'
 DEBUG = True
 BEBUG_PROPAGATE_EXCEPTIONS = True
 
-ALLOWED_HOSTS = ['https://student-helpline.herokuapp.com', '127.0.0.1']
+#ALLOWED_HOSTS = ['https://student-helpline.herokuapp.com', '127.0.0.1']
 
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
