@@ -45,14 +45,15 @@
   		</a>
 
 	  		{% empty %}
-				<div class="container" style="padding-top: 100px;">
-					<div class="divider mb-4"></div>
-					<div class="jumbotron">
-						<div class="card-text text-center">
-							<h1>There are no categories matches "{{ query }}"</h1>
-						</div>
-					</div>
-				</div>
+
+				  <div class="container" style="padding-top: 100px;">
+			          <div class="divider mb-4"></div>
+			          <div class="jumbotron">
+			            <div class="card-text text-center">
+			              <p>There are no categories matches ({{ query }})</p>
+			            </div>
+			          </div>
+			      </div>
 	  		{% endfor %}
 	  	</div>
 	</div>
