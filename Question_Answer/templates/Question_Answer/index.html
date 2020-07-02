@@ -28,6 +28,7 @@
 	  	
   		{% for question in questions %}
   			<div class="divider mb-4"></div>
+
   			<div class="container">
   				<h5 style="float: right; padding-top: 40px;">
   					{{ question.pub_date|timesince }} ago
@@ -35,7 +36,6 @@
   				<div class="user-pic">
   					<img src="{{ question.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ question.owner.username.title|linebreaks }}</h5></i>
   				</div> 	
-
 				<div class="card" style="border: 2px solid lightgray">
 					
 					<div class="card-header text-center">
@@ -49,51 +49,20 @@
 				</div>
 
 				<div class="row">
-<<<<<<< HEAD
-
-					<div id="liked-section">
+					<div class="col" id="liked-section">
 						{% include 'Question_Answer/question_liked.html' %}
 					</div>
 
 					{% if user.is_authenticated and user.profile.is_teacher %}
-						<div class="row">
-							<div class="col-4" id="answer-question">
-								<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">answer</a><h5>
-							</div>
-							<div class="col-8" id="see-answers">
-								<h5><a href="{% url 'Question_Answer:question' question.id %}">see answers</a><h5>
-							</div>
+					<div class="row" style="padding-right: relative;">
+						<div class="col text-right" id="answer-question">
+							<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">reply</a><h5>
 						</div>
-=======
-					<div class="col">
-						<div class="segment">
-							<form action="{% url 'Question_Answer:like-question' %}" method="POST">
-								{% csrf_token %}
-								<input type="hidden" name="question_id" value="{{ question.id }}">
-
-								{% if request.user not in question.liked.all %}
-									<button style="color: black; background-color: white; border: none;" type="submit" class="btn btn-primary"><i class="fa fa-thumbs-up fa-x"></i></button>
-									
-								{% else %}
-									<button style="color: black; background-color: white; border: none;" type="submit" class="btn btn-danger"><i class="fa fa-thumbs-down fa-x"></i></button>
-
-								{% endif %}
-								
-							</form>
-							<strong>{{ question.liked.all.count }} likes</strong>
+						<div class="col text-right" id="see-answers">
+							<h5><a href="{% url 'Question_Answer:question' question.id %}">answers</a><h5>
 						</div>
 					</div>
 
-					{% if user.is_authenticated and user.profile.is_teacher %}
-						<div class="row">
-							<div class="col-4" id="answer-question">
-								<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">answer</a><h5>
-							</div>
-							<div class="col-8" id="see-answers">
-								<h5><a href="{% url 'Question_Answer:question' question.id %}">see answers</a><h5>
-							</div>
-						</div>
->>>>>>> bda2aa14d88ba3bc20cf85f5c8821218716106ed
 					{% else %}
 						<div class="col text-right" id="see-answers">
 							<h5><a href="{% url 'Question_Answer:question' question.id %}">see answers</a></h5>
@@ -102,6 +71,7 @@
 				</div>
 
 			</div>
+  		</div>
 
 			{% empty %}
 				<div class="container" style="padding-top: 100px;">
@@ -114,7 +84,6 @@
 				</div>	  		 	
   		{% endfor %}
 
-  	</section>
 <!-- 
 
 	<script>
