@@ -31,7 +31,7 @@ class AnswerLikeAdmin(admin.ModelAdmin):
 	class Meta:
 		AnswerLike
 
-admin.site.site_header = 'Admin Student Helpline Portal'
+admin.site.site_header = 'Student Helpline Portal Admin'
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer, AnswerAdmin)
