@@ -4,14 +4,23 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from .models import Profile
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import TextInput, PasswordInput, EmailInput
 
 
 
 class StudentForm(UserCreationForm):
+	password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
+	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'confirm password'}))
 
 	class Meta:
 		model = User
 		fields = ('username', 'email', 'first_name', 'password1', 'password2')
+		widgets = {
+			'username': TextInput(attrs={'placeholder': 'username'}),
+			'email': EmailInput(attrs={'placeholder': 'email'}),
+			'first_name': TextInput(attrs={'placeholder': 'full name'}),
+		}
+
 
 		def clean_email(self):
 			email = self.cleaned_data.get('email')
@@ -36,10 +45,18 @@ class StudentForm(UserCreationForm):
 
 
 class TeacherForm(UserCreationForm):
+	password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
+	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'confirm password'}))
 	
 	class Meta:
 		model = User
 		fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
+		widgets = {
+			'username': TextInput(attrs={'placeholder': 'username'}),
+			'email': EmailInput(attrs={'placeholder': 'email'}),
+			'first_name': TextInput(attrs={'placeholder': 'first name'}),
+			'last_name': TextInput(attrs={'placeholder': 'last name'}),
+		}
 		
 		def clean_email(self):
 			email = self.cleaned_data.get('email')

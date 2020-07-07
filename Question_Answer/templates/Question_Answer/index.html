@@ -35,18 +35,20 @@
   				</h5>
   				<div class="user-pic">
   					<img src="{{ question.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ question.owner.username.title|linebreaks }}</h5></i>
-  				</div> 	
-				<div class="card" style="border: 2px solid lightgray">
-					
-					<div class="card-header text-center">
+  				</div> 
+  				<a href="{% url 'Question_Answer:question' question.id %}" style="color: black;">
+					<div class="card" style="border: 2px solid lightgray">
 						
-						<h3 class="col col-xl-12">{{ question.question_title|linebreaks }}</h3><h4>({{ question.category.title }})</h4>
-		  			</div>
+						<div class="card-header text-center">
+							
+							<h3 class="col col-xl-12">{{ question.question_title|linebreaks }}</h3><h4>({{ question.category.title }})</h4>
+			  			</div>
 
-				  	<div class="card-body text-center" style="height: 150px;" id="text-box">	
-				  		<h5>{{ question.question_text|linebreaks }}</h5>
-				  	</div>
-				</div>
+					  	<div class="card-body text-center" style="height: 150px;" id="text-box">	
+					  		<h5>{{ question.question_text|linebreaks }}</h5>
+					  	</div>
+					</div>
+				</a>
 
 				<div class="row">
 					<div class="col" id="liked-section">
@@ -58,15 +60,7 @@
 						<div class="col text-right" id="answer-question">
 							<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">reply</a><h5>
 						</div>
-						<div class="col text-right" id="see-answers">
-							<h5><a href="{% url 'Question_Answer:question' question.id %}">answers</a><h5>
-						</div>
-					</div>
-
-					{% else %}
-						<div class="col text-right" id="see-answers">
-							<h5><a href="{% url 'Question_Answer:question' question.id %}">see answers</a></h5>
-						</div>
+						
 					{% endif %}
 				</div>
 
