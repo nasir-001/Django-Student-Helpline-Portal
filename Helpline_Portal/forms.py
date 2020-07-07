@@ -78,8 +78,8 @@ class ProfileForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-	username = forms.CharField()
-	password = forms.CharField(widget=forms.PasswordInput)
+	username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'username'}))
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
 
 	def clean(self, *args, **kwargs):
 		username = self.cleaned_data.get('username')
