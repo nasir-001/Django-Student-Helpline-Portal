@@ -31,17 +31,23 @@
 
   			<div class="container">
   				<h5 style="float: right; padding-top: 40px;">
-  					{{ question.pub_date|timesince }} ago
+  					{{question.pub_date|timesince }} ago
   				</h5>
+
   				<div class="user-pic">
-  					<img src="{{ question.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ question.owner.username.title|linebreaks }}</h5></i>
+  					<img src="{{ question.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ question.owner.username.title|linebreaks }} </h5></i>
   				</div> 
+  				
   				<a href="{% url 'Question_Answer:question' question.id %}" style="color: black;">
 					<div class="card" style="border: 2px solid lightgray">
 						
 						<div class="card-header text-center">
+							<div class="text-right">
+								<span>({{ question.num_answers }} answer)</span>
+							</div>
 							
 							<h3 class="col col-xl-12">{{ question.question_title|linebreaks }}</h3><h4>({{ question.category.title }})</h4>
+
 			  			</div>
 
 					  	<div class="card-body text-center" style="height: 150px;" id="text-box">	
@@ -51,17 +57,59 @@
 				</a>
 
 				<div class="row">
-					<div class="col" id="liked-section">
+					<div class="col" v-on:click="vote()" id="app" style="padding-left: 0">
 						{% include 'Question_Answer/question_liked.html' %}
 					</div>
+					
 
 					{% if user.is_authenticated and user.profile.is_teacher %}
-					<div class="row" style="padding-right: relative;">
-						<div class="col text-right" id="answer-question">
-							<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">reply</a><h5>
+
+					<div class="row">
+
+						{% if request.user != question.owner %}
+							<div class="col text-right mt-2 mr-3" id="answer-question">
+								<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">reply</a><h5>
+							</div>
+						{% else %}
+
+							<div class="cols text-right mt-2">
+									<a href="{% url 'Question_Answer:edit_question' question.pk %}">
+										<button class="btn btn-outline-success mr-1" style="width: 45px; padding: 2px;">edit</button>
+									</a>			
+								</div>
+
+								<div class="col text-right mt-2">
+									<a href="{% url 'Question_Answer:delete_question' question.pk %}">
+										<button class="btn btn-outline-danger mr-3" style="width: 50px; padding: 2px;">delete</button>
+									</a>
+								</div>
+
+							<div class="col text-right mt-2 mr-3" id="answer-question">
+								<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">reply</a><h5>
+							</div>
+						{% endif %}
+
+					{% else %}
+						<div class="row">
+							{% if request.user != question.owner %}
+
+							{% else %}
+									<div class="cols text-right mt-2">
+										<a href="{% url 'Question_Answer:edit_question' question.pk %}">
+											<button class="btn btn-outline-success mr-1" style="width: 45px; padding: 2px;">edit</button>
+										</a>			
+									</div>
+
+									<div class="col text-right mt-2">
+										<a href="{% url 'Question_Answer:delete_question' question.pk %}">
+											<button class="btn btn-outline-danger mr-3" style="width: 50px; padding: 2px;">delete</button>
+										</a>
+									</div>
+								</div>
+							{% endif %}
 						</div>
-						
 					{% endif %}
+					
 				</div>
 
 			</div>
@@ -78,20 +126,6 @@
 				</div>	  		 	
   		{% endfor %}
 
-<!-- 
-
-	<script>
-		$(document).ready(function(){
-			$('#like').click(function(e){
-				// e.preventDefault();
-				console.log("click")
-				$.get('question_liked.html', function(data){
-					$('#liked-section').html(data);
-				});
-			});
-		});
-		
-	</script> -->
 
 		{% endblock %}
 

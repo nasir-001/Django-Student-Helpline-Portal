@@ -1,0 +1,33 @@
+{% extends 'Helpline_Portal/basetopbar.html' %}
+
+{% block title %}Delete Question | Student Helpline Portal{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h4>Are you sure you want to delete</h4>
+		 
+		 <h2>
+		 	"{{ question }}"?
+		 </h2>
+		 <div class="divider mb-4"></div>
+
+		<form method="POST">
+			{% csrf_token %}
+			<a href="{% url 'Question_Answer:index' %}">
+				<div class="row">
+					<div class="cols text-center" style="width: 85px; height: 38px; background-color: gray; border-radius: 5px;">
+						<span style="color: white;">
+							<div class="text mt-2">
+								Cancel
+							</div>
+			</a>
+					</div>
+
+					<div class="cols">
+						<button class="btn btn-danger" style="margin-left: 15px;">Confirm</button>
+					</div>
+				</div>
+		</form>	
+	</div>
+
+{% endblock %}

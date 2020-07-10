@@ -1,5 +1,7 @@
 {% extends 'Helpline_Portal/basetopbar.html' %}
 
+{% block title %}Edit Question | Student Helpline Portal{% endblock %}
+
 {% block body %}
 
 <div class="divider mb-4"></div>
@@ -20,10 +22,7 @@
               <img src="{{ answer.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ answer.owner.username.title|linebreaks }}</h5></i>
           </div>        
           <div class="card" style="border: 2px solid lightgray">
-              <!-- <div class="card-header text-center">
-                  <h2>{{ question.question_text|linebreaks }}</h2>
-              </div>
- -->
+          
               <div class="card-body text-center" style="height: 150px;" id="text-box">  
                   <h5>{{ answer.answer_text|linebreaks }}</h5>
               </div>
@@ -49,7 +48,28 @@
                     <strong>{{ answer.liked.all.count }} likes</strong>
                 </div>
             </div>
-        </div>  
+         
+
+            <div class="row">
+                {% if request.user != answer.owner %}
+
+                {% else %}
+                    <div class="cols text-right mt-2">
+                        <a href="{% url 'Question_Answer:edit_answer' answer.pk %}">
+                            <button class="btn btn-outline-success mr-1" style="width: 45px; padding: 2px;">edit</button>
+                        </a>            
+                    </div>
+
+                    <div class="col text-right mt-2">
+                        <a href="{% url 'Question_Answer:delete_answer' answer.pk %}">
+                            <button class="btn btn-outline-danger mr-3" style="width: 50px; padding: 2px;">delete</button>
+                        </a>
+                    </div>
+            </div>
+                {% endif %}
+            </div>
+        </div>
+
       </div>
       <div class="divider mb-4"></div>
 

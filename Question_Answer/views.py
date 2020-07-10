@@ -10,6 +10,7 @@ from .forms import QuestionForm, AnswerForm
 from .models import Category, Question, Answer, QuestionLike, AnswerLike
 from operator import attrgetter
 from django.template.loader import render_to_string
+from django.views.generic import UpdateView, DeleteView
 
 
 @login_required
@@ -64,6 +65,44 @@ def new_question(request, category_id):
     return render(request, 'Question_Answer/new_question.html', context)
 
 
+class UpdateQuestionView(UpdateView):
+    model = Question
+    template_name = 'Question_Answer/edit_question.html'
+    fields = ['question_title', 'question_text']
+
+
+    def get_success_url(self):
+        return reverse('Question_Answer:index')
+
+
+class UpdateAnswerView(UpdateView):
+    model = Answer
+    template_name = 'Question_Answer/edit_answer.html'
+    fields = ['answer_text']
+
+
+    def get_success_url(self):
+        return reverse('Question_Answer:index')
+
+
+class DeleteQuestionView(DeleteView):
+    model = Question
+    template_name = 'Question_Answer/delete_question.html'
+
+
+    def get_success_url(self):
+        return reverse('Question_Answer:index')
+
+
+class DeleteAnswerView(DeleteView):
+    model = Answer
+    template_name = 'Question_Answer/delete_answer.html'
+
+
+    def get_success_url(self):
+        return reverse('Question_Answer:index')
+
+
 @login_required
 def question(request, question_id):
     question = Question.objects.get(id=question_id)
@@ -105,44 +144,6 @@ def get_categories_queryset(query=None):
         for cart_list in cart_lists:
             queryset.append(cart_list)
     return list(set(queryset))
-
-
-
-# def like_question(request):
-#     user = request.user
-#     if request.method == 'POST':
-   
-#         question_id = request.POST.get('question_id')
-#         #question_obj = Question.objects.get(id=question_id)
-#         question_obj = get_object_or_404(Question, id=request.POST.get('id'))
-
-
-#         if user in question_obj.liked.all():
-#             question_obj.liked.remove(user)
-#         else:
-#             question_obj.liked.add(user)
-
-#         like, created = QuestionLike.objects.get_or_create(user=user, question_id=question_id)
-
-#         if not created:
-#             if like.value == 'Like':
-#                 like.value = 'Unlike'
-#             else:
-#                 like.value = 'Like'
-
-#         like.save()
-#         context = {
-#             'question_id': question_id,
-#             'question_obj': question_obj,
-#         }
-#         if request.is_ajax():
-#             html = render_to_string('Question_Answer/question_liked.html', request=request)
-#             return JsonResponse({'form': html})
-
-#         else:
-#             return redirect("Question_Answer:index")
-
-
 
 
 def like_question(request):

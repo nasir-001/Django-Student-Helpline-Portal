@@ -51,6 +51,10 @@ class Question(models.Model):
     def num_likes(self):
         return self.liked.all().count()
 
+    @property
+    def num_answers(self):
+        answers = Answer.objects.filter(question_id = self.id)
+        return len(answers)
 
     def save(self, *args, **kwargs):
         if not self.pk:
