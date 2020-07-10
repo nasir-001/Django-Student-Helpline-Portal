@@ -26,5 +26,7 @@ urlpatterns = [
 
 ]
 
+handler404 = 'Helpline_Portal.views.error_404_page'
+handler404 = 'Helpline_Portal.views.error_500_page'
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
