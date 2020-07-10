@@ -117,10 +117,3 @@ def logouts(request):
 def about(request):
 	return render(request, 'Helpline_Portal/about.html')
 
-
-def error_404_page(request, exception):
-	return render(request, 'Helpline_Portal/404.html')
-
-
-def error_500_page(request, exception):
-	return render(request, 'Helpline_Portal/500.html')
