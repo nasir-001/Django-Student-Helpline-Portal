@@ -91,21 +91,21 @@
 
 					{% else %}
 						<div class="row">
-							{% if request.user != question.owner %}
+							{% if request.user == question.owner and question.num_answers == 0 %}
+                  <div class="cols text-right mt-2">
+                    <a href="{% url 'Question_Answer:edit_question' question.pk %}">
+                      <button class="btn btn-outline-success mr-1" style="width: 45px; padding: 2px;">edit</button>
+                    </a>			
+                  </div>
 
+                  <div class="col text-right mt-2">
+                    <a href="{% url 'Question_Answer:delete_question' question.pk %}">
+                      <button class="btn btn-outline-danger mr-3" style="width: 50px; padding: 2px;">delete</button>
+                    </a>
+                  </div>
+                </div>
 							{% else %}
-									<div class="cols text-right mt-2">
-										<a href="{% url 'Question_Answer:edit_question' question.pk %}">
-											<button class="btn btn-outline-success mr-1" style="width: 45px; padding: 2px;">edit</button>
-										</a>			
-									</div>
-
-									<div class="col text-right mt-2">
-										<a href="{% url 'Question_Answer:delete_question' question.pk %}">
-											<button class="btn btn-outline-danger mr-3" style="width: 50px; padding: 2px;">delete</button>
-										</a>
-									</div>
-								</div>
+              <!-- Display nothing when the above conditions are not met -->
 							{% endif %}
 						</div>
 					{% endif %}

@@ -117,3 +117,10 @@ def logouts(request):
 def about(request):
 	return render(request, 'Helpline_Portal/about.html')
 
+
+def handler404(request, exception):
+	return render(request, 'Helpline_Portal/404.html', status=404)
+
+
+def handler500(request):
+	return render(request, 'Helpline_Portal/500.html', status=500)
