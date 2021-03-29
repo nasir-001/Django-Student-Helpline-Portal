@@ -73,40 +73,40 @@ def accountSettings(request):
 	return render(request, 'Helpline_Portal/accountSettings.html', context)
 
 
-def register(request):
+# def register(request):
 
-	if request.method == 'POST':
-		form = StudentForm(request.POST)
+# 	if request.method == 'POST':
+# 		form = StudentForm(request.POST)
 
-		if form.is_valid():
-			user = form.save()
-			user.profile = Profile.objects.create(is_student=True, user=user)
+# 		if form.is_valid():
+# 			user = form.save()
+# 			user.profile = Profile.objects.create(is_student=True, user=user)
 
-			return HttpResponseRedirect(reverse('Helpline_Portal:login'))
-	else:
-		form = StudentForm()
+# 			return HttpResponseRedirect(reverse('Helpline_Portal:login'))
+# 	else:
+# 		form = StudentForm()
 
-	context = {'form': form}
-	return render(request, 'Helpline_Portal/register.html', context)
+# 	context = {'form': form}
+# 	return render(request, 'Helpline_Portal/register.html', context)
 
 
-def staff_registration(request):
+# def staff_registration(request):
 
-	if request.method == 'POST':
-		form = TeacherForm(request.POST)
+# 	if request.method == 'POST':
+# 		form = TeacherForm(request.POST)
 
-		if form.is_valid():	
+# 		if form.is_valid():	
 			
-			user = form.save()
+# 			user = form.save()
 
-			user.profile = Profile.objects.create(is_teacher=True, user=user)
+# 			user.profile = Profile.objects.create(is_teacher=True, user=user)
 			
-			return HttpResponseRedirect(reverse('Helpline_Portal:login'))
-	else:
-		form = TeacherForm()
+# 			return HttpResponseRedirect(reverse('Helpline_Portal:login'))
+# 	else:
+# 		form = TeacherForm()
 	
-	context = {'form': form}
-	return render(request, 'Helpline_Portal/staff_registration.html', context)
+# 	context = {'form': form}
+# 	return render(request, 'Helpline_Portal/staff_registration.html', context)
 
 
 def logouts(request):

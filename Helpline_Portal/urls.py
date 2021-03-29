@@ -9,8 +9,8 @@ urlpatterns = [
 
 	path('accountSettings', views.accountSettings, name='accountSettings'),
     path('login', views.logins, name='login'),
-    path('register', views.register, name='register'),
+    # path('register', views.register, name='register'),
     path('logout', views.logouts, name='logout'),
-    path('staff_register', views.staff_registration, name='staff_register'),
+    # path('staff_register', views.staff_registration, name='staff_register'),
 ]
 
