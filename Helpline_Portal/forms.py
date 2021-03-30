@@ -8,65 +8,65 @@ from django.forms import TextInput, PasswordInput, EmailInput
 
 
 
-class StudentForm(UserCreationForm):
-	password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
-	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'confirm password'}))
+# class StudentForm(UserCreationForm):
+# 	password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
+# 	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'confirm password'}))
 
-	class Meta:
-		model = User
-		fields = ('username', 'email', 'first_name', 'password1', 'password2')
-		widgets = {
-			'username': TextInput(attrs={'placeholder': 'username'}),
-			'email': EmailInput(attrs={'placeholder': 'email'}),
-			'first_name': TextInput(attrs={'placeholder': 'full name'}),
-		}
-
-
-		def clean_email(self):
-			email = self.cleaned_data.get('email')
-
-			try:
-				User.objects.get(email=email)
-			except ObjectDoesNotExist:
-				return email
-			else:
-				raise forms.ValidationError('This email is not availbale!')
-
-		def clean_last_name(self):
-			email = self.cleaned_data.get('last_name')
-
-			try:
-				User.objects.get(last_name=last_name)
-			except ObjectDoesNotExist:
-				return last_name
-			else:
-				raise forms.ValidationError('User with this regnumber already exists!')
+# 	class Meta:
+# 		model = User
+# 		fields = ('username', 'email', 'first_name', 'password1', 'password2')
+# 		widgets = {
+# 			'username': TextInput(attrs={'placeholder': 'username'}),
+# 			'email': EmailInput(attrs={'placeholder': 'email'}),
+# 			'first_name': TextInput(attrs={'placeholder': 'full name'}),
+# 		}
 
 
+# 		def clean_email(self):
+# 			email = self.cleaned_data.get('email')
 
-class TeacherForm(UserCreationForm):
-	password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
-	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'confirm password'}))
+# 			try:
+# 				User.objects.get(email=email)
+# 			except ObjectDoesNotExist:
+# 				return email
+# 			else:
+# 				raise forms.ValidationError('This email is not availbale!')
+
+# 		def clean_last_name(self):
+# 			email = self.cleaned_data.get('last_name')
+
+# 			try:
+# 				User.objects.get(last_name=last_name)
+# 			except ObjectDoesNotExist:
+# 				return last_name
+# 			else:
+# 				raise forms.ValidationError('User with this regnumber already exists!')
+
+
+
+# class TeacherForm(UserCreationForm):
+# 	password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
+# 	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'confirm password'}))
 	
-	class Meta:
-		model = User
-		fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
-		widgets = {
-			'username': TextInput(attrs={'placeholder': 'username'}),
-			'email': EmailInput(attrs={'placeholder': 'email'}),
-			'first_name': TextInput(attrs={'placeholder': 'first name'}),
-			'last_name': TextInput(attrs={'placeholder': 'last name'}),
-		}
+# 	class Meta:
+# 		model = User
+# 		fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
+# 		widgets = {
+# 			'username': TextInput(attrs={'placeholder': 'username'}),
+# 			'email': EmailInput(attrs={'placeholder': 'email'}),
+# 			'first_name': TextInput(attrs={'placeholder': 'first name'}),
+# 			'last_name': TextInput(attrs={'placeholder': 'last name'}),
+# 		}
 		
-		def clean_email(self):
-			email = self.cleaned_data.get('email')
+# 		def clean_email(self):
+# 			email = self.cleaned_data.get('email')
 
-			try:
-				User.objects.get(email=email)
-			except ObjectDoesNotExist:
-				return email
-			else:
-				raise forms.ValidationError('This email is not availbale!')
+# 			try:
+# 				User.objects.get(email=email)
+# 			except ObjectDoesNotExist:
+# 				return email
+# 			else:
+# 				raise forms.ValidationError('This email is not availbale!')
 
 
 
