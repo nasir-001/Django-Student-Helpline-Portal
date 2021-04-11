@@ -4,7 +4,7 @@ from django.views.generic import CreateView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages 
-# from .forms import StudentForm, TeacherForm, LoginForm, ProfileForm
+from .forms import StudentForm, TeacherForm, LoginForm, ProfileForm
 from .forms import LoginForm, ProfileForm
 from django.urls import reverse
 from django.db import transaction
