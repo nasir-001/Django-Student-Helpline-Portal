@@ -61,14 +61,14 @@
 						{% include 'Question_Answer/question_liked.html' %}
 					</div>
 					
-					{% if user.is_authenticated and user.staff %}
+					{% if user.is_authenticated and user.profile.is_teacher %}
 
 					<div class="row">
+            <div class="col text-right mt-2 mr-3" id="answer-question">
+              <h5><a href="{% url 'Question_Answer:answer_question' question.id %}">reply</a><h5>
+            </div>
 
 						{% if request.user != question.owner %}
-							<div class="col text-right mt-2 mr-3" id="answer-question">
-								<h5><a href="{% url 'Question_Answer:answer_question' question.id %}">reply</a><h5>
-							</div>
 						{% else %}
 
 							<div class="cols text-right mt-2">

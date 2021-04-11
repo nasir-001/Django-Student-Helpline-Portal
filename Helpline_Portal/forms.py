@@ -90,6 +90,4 @@ class LoginForm(forms.Form):
 			if not user:
 				raise forms.ValidationError("This user does not exits")
 
-		return super(LoginForm, self).clean(*args, **kwargs)	
-
-
+		return super(LoginForm, self).clean(*args, **kwargs)
