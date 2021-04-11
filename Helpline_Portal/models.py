@@ -12,7 +12,7 @@ class Profile(models.Model):
 	is_student = models.BooleanField('student status', default=False)
 	is_teacher = models.BooleanField('teacher status', default=False)
 	avatar     = models.ImageField(default='user_avatar.jpg', null=True, blank=False)
-	course     = models.ManyToManyField(Category)
+	courses    = models.ManyToManyField(Category)
 
 	def __str__(self):
 		return self.user.username
