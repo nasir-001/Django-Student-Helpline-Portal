@@ -12,12 +12,12 @@
 		    <a style="padding-top: 25px;" href="{% url 'Helpline_Portal:accountSettings' %}">Settings <i class="fa fa-user-cog setting-icon"></i></a>
 		    
 		    <li class="navPic" style="padding-top: 5px; list-style: none; padding-left: 18px;">
-	  		    <img src="{{ user.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px">
+	  		  <img src="{{ user.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px">
 	  		</li>
 
 	  		{% if request.user.is_authenticated %}
-				<h5 style="padding-left: 10px;">{{ user }}</h5>
-			{% endif %}
+          <h5 style="padding-left: 10px;">{{ user }}</h5>
+        {% endif %}
 		</header>
 
 		<div class="divider mb-4"></div>
@@ -26,9 +26,13 @@
 	  	</div>
 	  	<br>
       <!-- Start -->
-      {% if user.is_authenticated and user.profile.is_teacher and user.profile.courses == question.category %}
-        This good
-      {% endif %}
+      {% for question in questions %}
+        {% if request.user.profile.is_teacher and user.profile.courses == question.category %}
+          This is good 
+        {% else %}
+          This is bad {{ request.user.profile.courses }}
+        {% endif %}
+      {% endfor %}
 	  	<!-- End -->
   		{% for question in questions %}
   			<div class="divider mb-4"></div>

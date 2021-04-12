@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.shortcuts import render, redirect, reverse
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Category(models.Model):
