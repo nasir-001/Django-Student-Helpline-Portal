@@ -11,6 +11,7 @@ class Category(models.Model):
     slug        = models.SlugField(max_length=150, unique=True, editable=False)
     description = models.CharField(max_length=300)
     pub_date    = models.DateTimeField(auto_now_add=True)
+    lecturer    = models.ManyToManyField(User)
 
 
     def __str__(self):

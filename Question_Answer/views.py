@@ -16,7 +16,8 @@ from django.views.generic import UpdateView, DeleteView
 @login_required
 def index(request):
     questions = Question.objects.order_by('-pub_date')
-    context = {'questions': questions}
+    categories = Category.objects.all()
+    context = {'questions': questions, 'categories': categories}
     return render(request, 'Question_Answer/index.html', context)
 
 
