@@ -29,7 +29,7 @@
 		<div class="card card-body">
 			<form method="POST" action="" enctype="multipart/form-data">
 				<div class="warning">
-					<h5>Note: You're to only enter your password here if you don't want to change your data!.</h5>
+					<h5>Note: You're to enter your password and the fields you want edit.</h5>
 				</div>
 				{% csrf_token %}
 				<br>	
@@ -37,11 +37,11 @@
 				<br>
 				{{ form.username }}
 				<br>
-				{{ form.password1.label_tag }}
+				<label for="password">Password</label>
 				<br>
 				{{ form.password1 }}
 				<br>
-				{{ form.password2.label_tag }}
+				<label for="password_confirn">Confirm password</label>
 				<br>
 				{{ form.password2 }}
 				<br>

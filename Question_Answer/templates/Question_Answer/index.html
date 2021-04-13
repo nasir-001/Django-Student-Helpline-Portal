@@ -27,8 +27,8 @@
 	  	<br>
       <!-- Start -->
       {% for question in questions %}
-        {% if request.user.profile.is_teacher and user.profile.courses == question.category %}
-          This is good 
+        {% if user.profile.is_teacher and user.profile.courses != question.category %}
+          This is good {{ request.user.profile.courses }}
         {% else %}
           This is bad {{ request.user.profile.courses }}
         {% endif %}
@@ -36,7 +36,6 @@
 	  	<!-- End -->
   		{% for question in questions %}
   			<div class="divider mb-4"></div>
-
 
   			<div class="container">
   				<h5 style="float: right; padding-top: 40px;">
@@ -98,7 +97,6 @@
                   </div>
                 </div>
 							{% else %}
-              <!-- Display nothing when the above conditions are not met -->
 							{% endif %}
 						</div>
 					{% endif %}
