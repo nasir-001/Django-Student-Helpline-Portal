@@ -26,15 +26,16 @@
 	  	</div>
 	  	<br>
       <!-- Start -->
-      <!-- {% for question in questions %}
+      {% for question in questions %}
         {% for category in categories %}
-          {% if user.profile.is_teacher and category.lecturer != question.category %}
+          {{ category.lecturer }}
+          <!-- {% if user.profile.is_teacher and category.lecturer != question.category %}
             This is good {{ category.lecturer }}
           {% else %}
             This is bad {{ category.lecturer }}
-          {% endif %}
+          {% endif %} -->
         {% endfor %}
-      {% endfor %} -->
+      {% endfor %}
 	  	<!-- End -->
   		{% for question in questions %}
   			<div class="divider mb-4"></div>
