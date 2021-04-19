@@ -30,8 +30,8 @@
         {% for category in categories %}
           {% if user.profile.is_teacher and category.lecturer != request.user %}
             This is good {{ category.lecturer }} {{ request.user }}
-          {% else %}
-            This is bad {{ category.lecturer }}
+          {% else %} 
+            This is bad {{ category.lecturer }} {{ request.user }}
           {% endif %}
         {% endfor %}
       {% endfor %} -->
@@ -71,7 +71,7 @@
 						{% include 'Question_Answer/question_liked.html' %}
 					</div>
 					
-					{% if user.is_authenticated and user.profile.is_teacher and category.lecturer != question.category %}
+					{% if user.is_authenticated and user.profile.is_teacher and category.lecturer != request.user %}
 
 					<div class="row">
             <div class="col text-right mt-2 mr-3" id="answer-question">
