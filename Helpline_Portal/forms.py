@@ -33,14 +33,14 @@ class StudentForm(UserCreationForm):
 				raise forms.ValidationError('This email is not availbale!')
 
 		def clean_last_name(self):
-			email = self.cleaned_data.get('last_name')
+			last_name = self.cleaned_data.get('last_name')
 
 			try:
 				User.objects.get(last_name=last_name)
 			except ObjectDoesNotExist:
 				return last_name
 			else:
-				raise forms.ValidationError('User with this regnumber already exists!')
+				raise forms.ValidationError('User with this lastname already exists!')
 
 
 
