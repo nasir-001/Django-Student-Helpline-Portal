@@ -3,25 +3,17 @@
 {% block title %}Logout | Student Helpline Portal{% endblock %}
 
 {% block logout %}
-
 	<div class="jumbotron">
-
 		<h1 class="display-3">
 			Student Helpline Portal.
 		</h1>
-
 		<p class="lead">
 			You have successfully logout out. Did you want to login again?
 		</p>
-
 		<div class="button1">
 			<a class="btn btn-lg btn-secondary" href="{% url 'Helpline_Portal:login' %}">Login <i class="fas fa-sign-in-alt"></a></i></a>
 		</div>
-		<br><br>
-
+		<br>
 	</div>
-
-	<div class="pb-2 mb-2 border-bottom">
-	</div>
-
+	<div class="pb-2 mb-2 border-bottom"></div>
 {% endblock %}

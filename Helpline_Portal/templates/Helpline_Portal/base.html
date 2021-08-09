@@ -36,30 +36,6 @@
 						$('#msg').remove();
 					}
 				}, 2000);
-
-			
-				// $(document).on('click', '#like', function(event){
-				// 	//event.preventDefault();
-				// 	var pk = $(this).attr('value');
-
-				// 	$.ajax({
-				// 		type: 'POST',
-				// 		url: '{% url "Question_Answer:like_question" %}',
-				// 		data: {'id':pk, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
-				// 		dataType: 'json',
-
-				// 		success: function(response){
-				// 			$('#liked-section').html(response['form'])
-				// 			console.log($('#liked-section').html(response['form']))
-				// 			alert("success")
-				// 		},
-
-				// 		error: function(rs, e) {
-				// 			alert("error")
-				// 			console.log(rs.responseText)
-				// 		},
-				// 	});
-				// });
 			});
 	
 		</script>

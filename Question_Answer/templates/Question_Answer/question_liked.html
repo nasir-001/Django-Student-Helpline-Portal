@@ -3,15 +3,11 @@
 		<form id="like-form" action="{% url 'Question_Answer:like_question' %}" method="POST">
 			{% csrf_token %}
 			<input type="hidden" name="question_id" value="{{ question.id }}">
-
 			{% if request.user not in question.liked.all %}
-				<button id="like" style="color: black; background-color: white; border: none;" type="submit" class="btn btn-primary"><i class="fa fa-thumbs-up fa-x"></i></button>
-				
+				<button id="like" style="color: black; background-color: white; border: none;" type="submit" class="btn btn-primary"><i class="fa fa-thumbs-up fa-x"></i></button>				
 			{% else %}
 				<button id="like" style="color: black; background-color: white; border: none;" type="submit" class="btn btn-danger"><i class="fa fa-thumbs-down fa-x"></i></button>
-
-			{% endif %}
-			
+			{% endif %}			
 		</form>
 		<strong>{{ question.liked.all.count }} likes</strong>
 	</div>

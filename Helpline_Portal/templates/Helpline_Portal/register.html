@@ -1,84 +1,68 @@
 {% extends 'Helpline_Portal/base.html' %}
 {% block title %}Registration | Student Helpline Portal{% endblock %}
-<body>
-	{% block body %}
-		<div class="wrapper fadeInDown">
-		    <div id="formContent">
-
-		      <form method="post">
-		        
-	        <div class="head">
-	          <h4>STUDENT REGISTRATION</h4>
-	        </div>
-	      <div class="Signup-Form">
-	      		
-				{% csrf_token %}
-
-				{% if form.errors %}
-				    <div>
-				        <ul>
-				            {% if form.non_field_errors %}
-				                {% for error in form.non_field_errors %}
-				                    <li>{{ error|escape }}</li>
-				                {% endfor %}
-				            {% endif %}
-
-				            {% for field in form %}
-				                {% if field.errors %}
-				                    <li> {{ field.name }}
-				                        <ul>
-				                            {% for error in field.errors %}
-				                                <li>{{ error|escape }}</li>
-				                            {% endfor %}
-				                        </ul>
-				                    </li>
-				                {% endif %}
-				            {% endfor %}
-				        </ul>
-				    </div>
-				{% endif %}
-
-				{{ form.username.label_tag }}
-				<div class="divider mb-1"></div>
-				{{ form.username }}
-				<div class="divider mb-1"></div>
-				
-				{{ form.password1.label_tag }}
-				<div class="divider mb-1"></div>
-				{{ form.password1 }}
-
-				<div class="divider mb-1"></div>
-				{{ form.password2.label_tag }}
-				<div class="divider mb-1"></div>
-				{{ form.password2 }}
-				<div class="divider mb-1"></div>
-				
-				{{ form.email.label_tag }}
-				<div class="divider mb-1"></div>
-				{{ form.email }}
-
-				<div class="divider mb-1"></div>
-				<label>Full Name</label>
-				<div class="divider mb-1"></div>
-				{{ form.first_name }}
-
-				<div class="divider mb-4"></div>
-				
-	        <div class="Next-Form" id="Next">
-				<button type="submit" class="btn btn-secondary col" style="width: 100px;">Register</button>
-				<div class="divider mb-4"></div>
-              <input type="hidden" name="next" value="#{% url 'Helpline_Portal:login' %}#">	
-            </div>
-
-	      </form>
-
-	      <div id="formFooter">
-	        <a class="underlineHover" href="{% url 'Helpline_Portal:login' %}">Already have an account.?</a>
-	      </div>
-
-	    </div>
-	 </div>
-	{% endblock %}
-
-</body>
+	<body>
+		{% block body %}
+			<div class="wrapper fadeInDown">
+					<div id="formContent">
+						<form method="post">		        
+							<div class="head">
+								<h4>STUDENT REGISTRATION</h4>
+							</div>
+							<div class="Signup-Form">								
+							{% csrf_token %}
+							{% if form.errors %}
+							<div>
+									<ul>
+										{% if form.non_field_errors %}
+												{% for error in form.non_field_errors %}
+													<li>{{ error|escape }}</li>
+												{% endfor %}
+										{% endif %}
+										{% for field in form %}
+											{% if field.errors %}
+												<li> {{ field.name }}
+													<ul>
+														{% for error in field.errors %}
+															<li>{{ error|escape }}</li>
+														{% endfor %}
+													</ul>
+												</li>
+											{% endif %}
+										{% endfor %}
+									</ul>
+							</div>
+							{% endif %}
+							{{ form.username.label_tag }}
+							<div class="divider mb-1"></div>
+							{{ form.username }}
+							<div class="divider mb-1"></div>						
+							{{ form.password1.label_tag }}
+							<div class="divider mb-1"></div>
+							{{ form.password1 }}
+							<div class="divider mb-1"></div>
+							{{ form.password2.label_tag }}
+							<div class="divider mb-1"></div>
+							{{ form.password2 }}
+							<div class="divider mb-1"></div>						
+							{{ form.email.label_tag }}
+							<div class="divider mb-1"></div>
+							{{ form.email }}
+							<div class="divider mb-1"></div>
+							<label>Full Name</label>
+							<div class="divider mb-1"></div>
+							{{ form.first_name }}
+							<div class="divider mb-4"></div>						
+								<div class="Next-Form" id="Next">
+							<button type="submit" class="btn btn-secondary col" style="width: 100px;">Register</button>
+							<div class="divider mb-4"></div>
+								<input type="hidden" name="next" value="#{% url 'Helpline_Portal:login' %}#">	
+							</div>
+						</form>
+						<div id="formFooter">
+							<a class="underlineHover" href="{% url 'Helpline_Portal:login' %}">Already have an account.?</a>
+						</div>
+				</div>
+		</div>
+		{% endblock %}
+	</body>
 </html>

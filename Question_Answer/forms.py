@@ -2,16 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import Question, Answer, Category
 
-"""
-class CategoryForm(forms.ModelForm):
-    title       = forms.CharField(max_length=150)
-    description = forms.CharField(max_length=300)
-    class Meta:
-        model = Category
-        fields = ['title', 'description']
-
-"""
-
 class QuestionForm(forms.ModelForm):
     question_title = forms.CharField(max_length=150, required=True)
     question_text  = forms.CharField(

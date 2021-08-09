@@ -2,65 +2,51 @@
 
 {% block title %}Course Questions | Student Helpline Portal{% endblock %}
 
-{% block body %}
-	
-	<div class="divider mb-4"></div>
-
-	<div class="ask-question">		
-  		<button type="button" class="btn btn-secondary" style="background-color: lightgray;"><h5><a href="{% url 'Question_Answer:new_question' category.id %}">New Question <i class="fa fa-question-circle fa-x"></i></a></h5></button>
-  		<div class="divider mb-4"></div>
-  	</div>
-
-{% if questions %}
-
-  	<div class="card-columns">
-		<div class="card bg-light col-10">
-			<div class="card-text text-center">
-				<h3>{{ category }}: All Questions</h3>
-			</div>
+	{% block body %}	
+		<div class="divider mb-4"></div>
+		<div class="ask-question">		
+			<button type="button" class="btn btn-secondary" style="background-color: lightgray;"><h5><a href="{% url 'Question_Answer:new_question' category.id %}">New Question <i class="fa fa-question-circle fa-x"></i></a></h5></button>
+			<div class="divider mb-4"></div>
 		</div>
-	</div>
-
-  	{% for question in questions %}
-	  	<div class="container">
-  			<div class="user-pic">
-  				<img src="{{ question.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ question.owner.username.title|linebreaks }}</h5>
-  			</div>  			
-	  		<div class="card bg-light">
-				<div class="card-header text-center">
-					{{ question.pub_date }}
-					<h2>{{ question.question_title|linebreaks }}</h2>
-		  		</div>
-				<div class="card-body text-center">	
-					<h5>{{ question.question_text|linebreaks }}</h5>
+		{% if questions %}
+		<div class="card-columns">
+			<div class="card bg-light col-10">
+				<div class="card-text text-center">
+					<h3>{{ category }}: All Questions</h3>
 				</div>
 			</div>
 		</div>
-
-	{% endfor %}
-  		
-{% else %}
-	
-	<div class="card-columns">
-		<div class="card bg-light col-6">
-			<div class="card-text text-center">
-				<h3>{{ category }}: </h3>
+		{% for question in questions %}
+			<div class="container">
+				<div class="user-pic">
+					<img src="{{ question.owner.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px"><h5>{{ question.owner.username.title|linebreaks }}</h5>
+				</div>  			
+				<div class="card bg-light">
+					<div class="card-header text-center">
+						{{ question.pub_date }}
+						<h2>{{ question.question_title|linebreaks }}</h2>
+						</div>
+					<div class="card-body text-center">	
+						<h5>{{ question.question_text|linebreaks }}</h5>
+					</div>
+				</div>
+			</div>
+		{% endfor %}				
+		{% else %}
+		<div class="card-columns">
+			<div class="card bg-light col-6">
+				<div class="card-text text-center">
+					<h3>{{ category }}: </h3>
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="container" style="padding-top: 100px;">
-		<div class="divider mb-4"></div>
-		<div class="jumbotron">
-			<div class="card-text text-center">
-				<h1>There are no questions in this course</h1>
+		<div class="container" style="padding-top: 100px;">
+			<div class="divider mb-4"></div>
+			<div class="jumbotron">
+				<div class="card-text text-center">
+					<h1>There are no questions in this course</h1>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="container">
-		
-	</div>	
-
-{% endif %}
-
+	{% endif %}
 {% endblock %}

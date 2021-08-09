@@ -3,34 +3,29 @@
 {% block title %}Edit Question | Student Helpline Portal{% endblock %}
 
 {% block body %}
-
 	<style type="text/css">
 		input[type=text] {
 			max-width: 280px;
 			min-width: 280px;
 		}	
 	</style>
-
-	<div class="divider mb-4"></div>
-					
+	<div class="divider mb-4"></div>					
 	<div class="container text-center" id="question-form">
 		<div class="card-herder">
 			<h1 style="font-family: all;">Edit Question</h1>
 		</div>
 		<hr>
 		<form action="{% url 'Question_Answer:edit_question' question.id %}" method='post' style="padding-top: 40px;">
-
-  			<h5>Question title:</h5>
-	  			{% csrf_token %}
-	  			{{ form.question_title|linebreaks }}
-			
-			<h5>Question:</h5>
-			{{ form.question_text }}
-			<div class="divider mb-3"></div>
-			<div class="Next-Form">
-				<button name="submit" class="btn btn-lg btn-secondary col" >Update Question <i class="fab fa-telegram-plane fa-x"></i></button>
-		      	<input type="hidden" name="next" value="{% url 'Question_Answer:index' %}">
-		   	</div>
+			<h5>Question title:</h5>
+				{% csrf_token %}
+				{{ form.question_title|linebreaks }}		
+				<h5>Question:</h5>
+				{{ form.question_text }}
+				<div class="divider mb-3"></div>
+				<div class="Next-Form">
+			<button name="submit" class="btn btn-lg btn-secondary col" >Update Question <i class="fab fa-telegram-plane fa-x"></i></button>
+					<input type="hidden" name="next" value="{% url 'Question_Answer:index' %}">
+			</div>
 		</form>
 	</div>
 

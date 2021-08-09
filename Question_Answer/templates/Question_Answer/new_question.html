@@ -3,35 +3,29 @@
 {% block title %}Ask Question | Student Helpline Portal{% endblock %}
 
 {% block body %}
-
 	<style type="text/css">
 		input[type=text] {
 			max-width: 280px;
 			min-width: 280px;
 		}	
 	</style>
-
-	<div class="divider mb-4"></div>
-					
+	<div class="divider mb-4"></div>					
 	<div class="container text-center" id="question-form">
 		<div class="card-herder">
 			<h1 style="font-family: all;">Question Form</h1>
 		</div>
 		<hr>
 		<form action="{% url 'Question_Answer:new_question' category.id %}" method='post' style="padding-top: 40px;">
-
-  			<h5>Question title:</h5>
-	  			{% csrf_token %}
-	  			{{ form.question_title|linebreaks }}
-			
-			<h5>Question:</h5>
-			{{ form.question_text }}
-			<div class="divider mb-3"></div>
-			<div class="Next-Form">
-				<button name="submit" class="btn btn-lg btn-secondary col" >Post Question <i class="fab fa-telegram-plane fa-x"></i></button>
-		      	<input type="hidden" name="next" value="#{% url 'Question_Answer:categories' %}#">
-		   	</div>
+			<h5>Question title:</h5>
+				{% csrf_token %}
+				{{ form.question_title|linebreaks }}			
+				<h5>Question:</h5>
+				{{ form.question_text }}
+				<div class="divider mb-3"></div>
+				<div class="Next-Form">
+					<button name="submit" class="btn btn-lg btn-secondary col" >Post Question <i class="fab fa-telegram-plane fa-x"></i></button>
+					<input type="hidden" name="next" value="#{% url 'Question_Answer:categories' %}#">
+				</div>
 		</form>
 	</div>
-
 {% endblock %}

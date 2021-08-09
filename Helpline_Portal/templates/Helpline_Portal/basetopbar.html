@@ -15,23 +15,17 @@
 	<link rel="shortcurt icon" type="image/png" href="{% static 'Helpline_Portal/favicons/favicons.png' %}">
 	
 </head>
-
-	<body>
-		
+	<body>		
 		{% include 'Helpline_Portal/messages.html' %}
 		<header class="topnav" id="myTopnav">
-
 		    <a style="padding-top: 25px;" href="{% url 'Question_Answer:index' %}">Dashboard <i class="fa fa-home"></i></a>
-
 		    <li class="navPic" style="padding-top: 5px; list-style: none; padding-left: 18px;">
 	  		    <img src="{{ user.profile.avatar.url }}" style="border-radius: 50%" height="40px" width="40px">
 	  		</li>
-
 	  		{% if request.user.is_authenticated %}
     			<h5 style="padding-left: 10px;">{{ user }}</h5>
     		{% endif %}
-		</header>
-		
+		</header>		
 		{% block body %}
 			
 		{% endblock %}
@@ -43,7 +37,5 @@
 				}
 			}, 2000)
 		</script>
-
 	</body>
-
 </html>

@@ -1,47 +1,37 @@
 {% extends 'Helpline_Portal/base.html' %}
 
 {% block title %}Login | Student Helpline Portal{% endblock %}
-
-<body>
-	{% block body %}
-	<div class="wrapper fadeInDown">
-	    <div id="formContent">
-
-	      <form method="post">
-
-	        <div class="head">
-	          <h3>Login</h3>
-	        </div>
-
-		   {% csrf_token %}
-
-		   {% if form.errors %}
-		       <p>Your name and username didn't match.</p>
-		   {% endif %}
-
-		   <div class="divider mb-1"></div>
-		   {{ form.username.label_tag }}
-		   <div class="divider mb-1"></div>
-		   {{ form.username }}
-
-		   <div class="divider mb-1"></div>
-		   {{ form.password.label_tag }}
-		   <div class="divider mb-1"></div>
-		   {{ form.password }}
-
-    		<div class="divider mb-4"></div>
-
-		   <div class="Next-Form" id="Next">
-				<button name="submit" class="btn btn-secondary col" style="width: 100px;">Login <i class="fas fa-sign-in-alt"></a></i></button>
-				<div class="divider mb-4"></div>
-              	<input type="hidden" name="next" value="#{% url 'Question_Answer:index' %}#">
-           </div>
-        <div id="formFooter">
-          <h3>Login</h3>
-	      </div>
-	    </form>
-	    </div>
-    </div>
-	{% endblock %}
-</body>
+	<body>
+		{% block body %}
+		<div class="wrapper fadeInDown">
+				<div id="formContent">
+					<form method="post">
+						<div class="head">
+							<h3>Login</h3>
+						</div>
+						{% csrf_token %}
+						{% if form.errors %}
+								<p>Your name and username didn't match.</p>
+						{% endif %}
+						<div class="divider mb-1"></div>
+						{{ form.username.label_tag }}
+						<div class="divider mb-1"></div>
+						{{ form.username }}
+						<div class="divider mb-1"></div>
+						{{ form.password.label_tag }}
+						<div class="divider mb-1"></div>
+						{{ form.password }}
+						<div class="divider mb-4"></div>
+						<div class="Next-Form" id="Next">
+							<button name="submit" class="btn btn-secondary col" style="width: 100px;">Login <i class="fas fa-sign-in-alt"></a></i></button>
+							<div class="divider mb-4"></div>
+								<input type="hidden" name="next" value="#{% url 'Question_Answer:index' %}#">
+							</div>
+						<div id="formFooter">
+							<h3>Login</h3>
+						</div>
+				</form>
+			</div>
+		{% endblock %}
+	</body>
 </html>
